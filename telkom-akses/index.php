@@ -98,7 +98,7 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="mitra.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
+                                <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
                             </li>
 
                         </ul>
@@ -120,10 +120,10 @@
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Beranda</h4><br>
-                                <a href="" class="list-group-item active"> 
-                                    <h4 class="list-group-item-heading">Welcome,</h4> 
-                                    <p class="list-group-item-text">Selamat Datang Kembali <b>Admin</b>  </p> 
+                                <h4 class="page-title">Beranda</h4>
+                                <a href="" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">Welcome,</h4>
+                                    <p class="list-group-item-text">Selamat Datang Kembali <b>Admin</b>  </p>
                                 </a>
                             </div>
                         </div> <br>
@@ -154,7 +154,7 @@
 
 
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-5">
                                 <div class="portlet"><!-- /primary heading -->
                                     <div class="portlet-heading">
                                         <h3 class="portlet-title text-dark text-uppercase">
@@ -199,11 +199,11 @@
                                 </div>
                             </div> <!-- end col -->
 
-                            <div class="col-lg-8" ">
-                                <div class="portlet" style="background-color: gainsboro;"><!-- /primary heading -->
+                            <div class="col-lg-7" ">
+                                <div class="portlet" style="background-color: firebrick;"><!-- /primary heading -->
                                     <div class="portlet-heading">
-                                        <h3 class="portlet-title text-dark text-uppercase">
-                                            <b>Data Orderan</b> 
+                                        <h3 class="portlet-title text-uppercase">
+                                            Data Orderan Terbaru
                                         </h3>
                                         <div class="portlet-widgets">
                                             <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>
@@ -213,27 +213,43 @@
                                     </div>
 
                                     <div id="portlet3" class="panel-collapse collapse in" aria-expanded="true">
-                                        <div class="portlet-body" style="background-color: gainsboro;">
+                                        <div class="portlet-body" style="background-color: firebrick;">
                                             <div class="table-responsive">
                                                 <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 300px; min-height: 300px; outline: none;">
                                                     <a href="#">
                                                         <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
                                                             <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author">Chadengle</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-date">13:40 PM</p>
+                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
+                                                            <p class="inbox-item-author">Nama : Fitria</p>
+                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
+                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
                                                         </div>
                                                     </a>
                                                     <a href="#">
                                                         <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
                                                             <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author">Chadengle</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                            <p class="inbox-item-date">13:40 PM</p>
+                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
+                                                            <p class="inbox-item-author">Nama : Fitria</p>
+                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
+                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
+                                                        </div>
+                                                    </a>
+                                                    <a href="#">
+                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
+                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
+                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
+                                                            <p class="inbox-item-author">Nama : Fitria</p>
+                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
+                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
+                                                        </div>
+                                                    </a>
+                                                    <a href="#">
+                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
+                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
+                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
+                                                            <p class="inbox-item-author">Nama : Fitria</p>
+                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
+                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
                                                         </div>
                                                     </a>
                                                 </div>
