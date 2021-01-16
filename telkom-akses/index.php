@@ -101,6 +101,10 @@
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Administrasi </span></a>
+                            </li>
+
                         </ul>
                         <div class="clearfix"></div>
                     </div>

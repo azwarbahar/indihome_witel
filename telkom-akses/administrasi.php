@@ -8,7 +8,16 @@
 
 		<link rel="shortcut icon" href="../assets/images/favicon_1.ico">
 
-		<title>Ubold - Responsive Admin Dashboard Template</title>
+        <title>Ubold - Responsive Admin Dashboard Template</title>
+
+        <!-- Plugins css-->
+        <link href="../assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
+        <link href="../assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" />
+        <link href="../assets/plugins/multiselect/css/multi-select.css"  rel="stylesheet" type="text/css" />
+        <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+        <link href="../assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+
 
         <!-- DataTables -->
         <link href="../assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
@@ -134,13 +143,13 @@
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Mitra</h4><br>
+                                <h4 class="page-title">Administrasi</h4><br>
                                 <ol class="breadcrumb">
 									<li>
 										<a href="index.php">Beranda</a>
 									</li>
 									<li class="active">
-										Mitra
+                                    Administrasi
 									</li>
 								</ol>
                             </div>
@@ -149,83 +158,79 @@
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
 
-                                    <!-- MODAL TABAH MITRA -->
+                                    <!-- MODAL TABAH ADMIN -->
                                     <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog"> 
-                                            <div class="modal-content"> 
-                                                <div class="modal-header"> 
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                                                    <h4 class="modal-title">Tambah Mitra</h4> 
-                                                </div> 
+                                                    <h4 class="modal-title">Tambah Administrasi</h4>
+                                                </div>
                                                 <div class="modal-body">
-                                                    <div class="row"> 
-                                                        <div class="col-md-12"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-3" class="control-label">Nama Mitra</label> 
-                                                                <input type="text" class="form-control" id="field-3" placeholder="Address"> 
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                    <div class="row"> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-4" class="control-label">City</label> 
-                                                                <input type="text" class="form-control" id="field-4" placeholder="Boston"> 
-                                                            </div> 
-                                                        </div> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-5" class="control-label">Country</label> 
-                                                                <input type="text" class="form-control" id="field-5" placeholder="United States"> 
-                                                            </div> 
-                                                        </div> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-6" class="control-label">Zip</label> 
-                                                                <input type="text" class="form-control" id="field-6" placeholder="123456"> 
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                    <div class="row"> 
-                                                        <div class="col-md-12"> 
-                                                            <div class="form-group no-margin"> 
-                                                                <label for="field-7" class="control-label">Personal Info</label> 
-                                                                <textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                </div> 
-                                                <div class="modal-footer"> 
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
-                                                    <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
-                                                </div> 
-                                            </div> 
-                                        </div>
-                                    </div><!-- /.modal -->
+                                                    <form id="fromAlat" action="#" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_admin" id="nama_admin">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Foto</label>
+                                                            <div class="col-sm-9 bootstrap-filestyle">
+                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto" id="foto" required="">
+                                                                <div class="row text-info" id="viewProgress" hidden="">
+                                                                    <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                            <div class="col-sm-9">
+                                                                <select name="jenis_kelamin_admin" id="jenis_kelamin_admin" class="form-control">
+                                                                <option value="Laki - laki">Laki - laki</option>
+                                                                <option value="Perempuan">Perempuan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Username dan Password</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+                                                            </div>
+                                                        </div>
 
-                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button> 
+                                                            <button type="button" class="btn btn-default waves-effect">Simpan</button> 
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- AKHIR MODAL TABAH ADMIN -->
+
+                                    <h4 class="m-t-0 header-title"><b>Data Administrasi</b></h4>
                                     <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>No</th>
+                                            <th>Foto</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
 
 
                                         <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
+                                            <td style="text-align: center;">1</td>
+                                            <td style="text-align: center;">System Architect</td>
                                             <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>System Architect</td>
+                                            <td style="text-align: center;">Edinburgh</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -460,8 +465,23 @@
         <script src="../assets/plugins/datatables/dataTables.scroller.min.js"></script>
         <script src="../assets/plugins/datatables/dataTables.colVis.js"></script>
         <script src="../assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
-
         <script src="../assets/pages/datatables.init.js"></script>
+
+        <script src="../assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+        <script src="../assets/plugins/switchery/js/switchery.min.js"></script>
+        <script type="text/javascript" src="../assets/plugins/multiselect/js/jquery.multi-select.js"></script>
+        <script type="text/javascript" src="../assets/plugins/jquery-quicksearch/jquery.quicksearch.js"></script>
+        <script src="../assets/plugins/select2/js/select2.min.js" type="text/javascript"></script>
+        <script src="../assets/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script src="../assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+        <script src="../assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+        <script src="../assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../assets/plugins/autocomplete/jquery.mockjax.js"></script>
+        <script type="text/javascript" src="../assets/plugins/autocomplete/jquery.autocomplete.min.js"></script>
+        <script type="text/javascript" src="../assets/plugins/autocomplete/countries.js"></script>
+        <script type="text/javascript" src="../assets/pages/autocomplete.js"></script>
+        <script type="text/javascript" src="../assets/pages/jquery.form-advanced.init.js"></script>
+
 
 
         <script src="../assets/js/jquery.core.js"></script>
@@ -479,7 +499,7 @@
             }
         });
         $('#datatable-scroller').DataTable({
-            ajax: "assets/plugins/datatables/json/scroller-demo.json",
+            ajax: "../assets/plugins/datatables/json/scroller-demo.json",
             deferRender: true,
             scrollY: 380,
             scrollCollapse: true,
