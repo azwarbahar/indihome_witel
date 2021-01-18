@@ -1,3 +1,8 @@
+<?php
+require('../koneksi.php');
+$admin = mysqli_query($conn, "SELECT * FROM tb_admin");
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -85,10 +90,9 @@
                                 <li class="dropdown top-menu-item-xs">
                                     <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="../assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Settings</a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-lock m-r-10 text-custom"></i> Lock screen</a></li>
+                                        <li><a href=""><strong>Admin</strong></a></li>
                                         <li class="divider"></li>
+                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
@@ -163,11 +167,11 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                     <h4 class="modal-title">Tambah Administrasi</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="fromAlat" action="#" enctype="multipart/form-data">
+                                                    <form method="POST" action="controller.php" enctype="multipart/form-data">
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                                             <div class="col-sm-9">
@@ -177,7 +181,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Foto</label>
                                                             <div class="col-sm-9 bootstrap-filestyle">
-                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto" id="foto" required="">
+                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto_admin" id="foto_admin" required="">
                                                                 <div class="row text-info" id="viewProgress" hidden="">
                                                                     <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
                                                                 </div>
@@ -201,7 +205,7 @@
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button> 
-                                                            <button type="button" class="btn btn-default waves-effect">Simpan</button> 
+                                                            <button type="submit" name="submit_admin" class="btn btn-default waves-effect">Simpan</button> 
                                                         </div>
                                                     </form>
                                                 </div>
@@ -222,89 +226,51 @@
                                             <th></th>
                                         </tr>
                                         </thead>
-
-
                                         <tbody>
+                                        <?php $i = 1; foreach($admin as $dta) { ?>
                                         <tr>
-                                            <td style="text-align: center;">1</td>
-                                            <td style="text-align: center;">System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>System Architect</td>
-                                            <td style="text-align: center;">Edinburgh</td>
+                                            <td style="text-align: center;"><?= $i ?></td>
+                                            <td style="text-align: center;"><img  src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt="" border=3 height=40 width=40></img></td>
+                                            <td><?= $dta['nama_admin'] ?></td>
+                                            <td><?= $dta['jekel_admin'] ?></td>
+                                            <td style="text-align: center;">
+                                                <div class="text-center">
+                                                    <a href="#" type="button" data-toggle="modal" data-target="#detail" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                    <a href="#" title data-original-title="Edit" type="button" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" title data-original-title="Hapus" type="button" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
+
+                                        <!-- MODAL DETAIL -->
+                                        <div id="detail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" style="width:55%;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h4 class="modal-title" id="custom-width-modalLabel"><strong>Detail</strong> </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4>Text in a modal</h4>
+                                                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                                                        <hr>
+                                                        <h4>Overflowing text to show scroll behavior</h4>
+                                                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+
+                                        <?php $i = $i + 1; } ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="modal modal-add-alat in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: block;">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myLargeModalLabel">Tambah Inventori Alat</h4>
-                                    </div>
-                                    <div class="modal-body" style="padding: 20px 50px 0 50px">
-                                        <form id="fromAlat" action="#" enctype="multipart/form-data">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Nama Alat</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Alat" name="nama" id="nama">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Foto</label>
-                                                <div class="col-sm-9 bootstrap-filestyle">
-                                                    <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto" id="foto" required="" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);"><div class="bootstrap-filestyle input-group"><input type="text" class="form-control " placeholder="Belum ada foto" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="foto" class="btn btn-default "><span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> <span class="buttonText">Pilih Foto</span></label></span></div>
-                                                    <div class="row text-info" id="viewProgress" hidden="">
-                                                        <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 control-label">Kategori</label>
-                                                <div class="col-sm-9">
-                                                    <select name="kategori_id" id="kategori" class="form-control">
-                                                        
-                                                    <option value="16">Piring</option><option value="24">Mangkok</option><option value="25">Sendok</option><option value="26">Jepitan</option><option value="28">Pirex</option><option value="29">Sumpit</option><option value="31">Grill Pan</option><option value="32">Panci</option><option value="33">Kompor</option><option value="34">Talang</option><option value="35">Cerek</option><option value="36">Botol saus</option><option value="37">Tempat Bawang</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Jumlah Beli</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" required="" placeholder="Jumlah Beli" name="jumlah_alat" id="jumlah_alat">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Total Harga Beli</label>
-                                                <div class="input-group col-sm-9">
-                                                    <span class="input-group-addon">Rp.</span>
-                                                    <input type="number" class="form-control" required="" placeholder="Total Harga" name="total_harga" id="total_harga">
-                                                    <span class="input-group-addon">.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Nama Supplier</label>
-                                                <div class="col-sm-9">
-                                                    <select name="supplier_id" id="supplier" class="form-control">
-                                                        
-                                                    <option value="9">cv. swort art online</option><option value="8">Tidak Ada</option><option value="4">PT. Get Supplie</option><option value="3">CV. Properti Makassar</option><option value="1">Rahmat Ilyas</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-9">
-                                                    <button type="submit" name="simpanAlat" class="btn btn-default" id="upload">Simpan</button>
-                                                    <button type="" class="btn btn-primary" id="batal" data-dismiss="modal" aria-hidden="true">Batal</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
                     </div> <!-- container -->
                 </div> <!-- content -->
 
@@ -313,122 +279,6 @@
                 </footer>
 
             </div>
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
-
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-1.jpg" alt="">
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-2.jpg" alt="">
-                                </div>
-                                <span class="name">Tomaslau</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-3.jpg" alt="">
-                                </div>
-                                <span class="name">Stillnotdavid</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-4.jpg" alt="">
-                                </div>
-                                <span class="name">Kurafire</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-5.jpg" alt="">
-                                </div>
-                                <span class="name">Shahedk</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-6.jpg" alt="">
-                                </div>
-                                <span class="name">Adhamdannaway</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-7.jpg" alt="">
-                                </div>
-                                <span class="name">Ok</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-8.jpg" alt="">
-                                </div>
-                                <span class="name">Arashasghari</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-9.jpg" alt="">
-                                </div>
-                                <span class="name">Joshaustin</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-10.jpg" alt="">
-                                </div>
-                                <span class="name">Sortino</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /Right-bar -->
-
-
         </div>
         <!-- END wrapper -->
 
@@ -481,8 +331,6 @@
         <script type="text/javascript" src="../assets/plugins/autocomplete/countries.js"></script>
         <script type="text/javascript" src="../assets/pages/autocomplete.js"></script>
         <script type="text/javascript" src="../assets/pages/jquery.form-advanced.init.js"></script>
-
-
 
         <script src="../assets/js/jquery.core.js"></script>
         <script src="../assets/js/jquery.app.js"></script>
