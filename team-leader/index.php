@@ -39,7 +39,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Telkom Akses</span></a>
+                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
                         <!-- Image Logo here -->
                         <!-- <a href="index.html" class="logo">
                             <i class="icon-c-logo"> <img src="../assets/images/logo_sm.png" height="42"/> </i>
@@ -93,15 +93,15 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="mitra.php" class="waves-effect"><i class="ti-briefcase"></i> <span> Mitra </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Administrasi </span></a>
                             </li>
 
                         </ul>
@@ -123,7 +123,7 @@
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Beranda</h4>
+                                <h4 class="page-title">Beranda</h4><br>
                                 <a href="" class="list-group-item active">
                                     <h4 class="list-group-item-heading">Welcome,</h4>
                                     <p class="list-group-item-text">Selamat Datang Kembali <b>Admin</b>  </p>
@@ -132,77 +132,33 @@
                         </div> <br>
 
                         <div class="row">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-assignment-returned text-primary"></i>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="widget-panel widget-style-3 bg-white">
+                                    <i class="md md-assignment text-primary"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Proses</div>
+                                    <div class="text-muted m-t-5">Data Orderan</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="widget-panel widget-style-3 bg-white">
                                     <i class="md md-assignment-turned-in text-success"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Selesai</div>
+                                    <div class="text-muted m-t-5">Data SC</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-assignment-late text-danger"></i>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="widget-panel widget-style-3 bg-white">
+                                    <i class="md md-account-box text-warning"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Batal</div>
+                                    <div class="text-muted m-t-5">Teknisi</div>
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="row">
-                            <div class="col-lg-5">
-                                <div class="portlet"><!-- /primary heading -->
-                                    <div class="portlet-heading">
-                                        <h3 class="portlet-title text-dark text-uppercase">
-                                            Mitra
-                                        </h3>
-                                        <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>
-                                            <span class="divider"></span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div id="portlet2" class="panel-collapse collapse in" aria-expanded="true">
-                                        <div class="portlet-body">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Nama</th>
-                                                            <th>Status</th>
-                                                            <th>Leader</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Antang</td>
-                                                            <td><span class="label label-info">Aktif</span></td>
-                                                            <td>Fitria</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Samata</td>
-                                                            <td><span class="label label-success">Aktif</span></td>
-                                                            <td>Fitria</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
 
-                            <div class="col-lg-7" ">
+                            <div class="col-lg-8">
                                 <div class="portlet" style="background-color: firebrick;"><!-- /primary heading -->
                                     <div class="portlet-heading">
                                         <h3 class="portlet-title text-uppercase">

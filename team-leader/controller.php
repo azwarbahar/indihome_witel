@@ -15,7 +15,7 @@ if (isset($_POST['submit_admin'])) {
 	$jenis_kelamin_admin = $_POST['jenis_kelamin_admin'];
 	$username_admin = $_POST['username_admin'];
 	$password = password_hash($username_admin, PASSWORD_DEFAULT);
-	$role_admin = "TA";
+	$role_admin = "TL";
 	$status_admin = "Aktif";
 
 	// SET FOTO
@@ -46,13 +46,13 @@ if (isset($_POST['submit_admin'])) {
 }
 
 
-// UPDATE MASYARAKAT
+// UPDATE ADMIN
 if (isset($_POST['edit_admin'])) {
 	$id_admin = $_POST['id_admin'];
 	$nama_admin = $_POST['nama_admin'];
 	$jenis_kelamin_admin = $_POST['jenis_kelamin_admin'];
 	$username_admin = $_POST['username_admin'];
-	$role_admin = "TA";
+	$role_admin = "TL";
 	$status_admin = "Aktif";
 
     // SET FOTO
@@ -112,5 +112,50 @@ if (isset($_GET['hapus_admin'])) {
 		</script>
 	<?php }
 }
+
+
+// SUBMIT TEKNISI
+if (isset($_POST['submit_teknisi'])) {
+	$nama_teknisi = $_POST['nama_teknisi'];
+	$telpon_teknisi = $_POST['telpon_teknisi'];
+	$jenis_kelamin_teknisi = $_POST['jenis_kelamin_teknisi'];
+	$username_teknisi = $_POST['username_teknisi'];
+	$password_teknisi = password_hash($username_teknisi, PASSWORD_DEFAULT);
+	$role_teknisi = "Teknisi";
+	$status_teknisi = "Aktif";
+
+	// SET FOTO
+	$foto = $_FILES['foto_teknisi']['name'];
+	$ext = pathinfo($foto, PATHINFO_EXTENSION);
+	$nama_foto = "image_".time().".".$ext;
+    $file_tmp = $_FILES['foto_teknisi']['tmp_name'];
+
+    // TAMBAH DATA
+	$query= "INSERT INTO tb_teknisi VALUES (NULL, '$nama_teknisi', '$telpon_teknisi', '$jenis_kelamin_teknisi', '$nama_foto', '$status_teknisi')";
+	mysqli_query($conn, $query);
+	if (mysqli_affected_rows($conn) > 0) {
+		//get Id Teknisi
+		$getIdInster = mysqli_insert_id($conn);
+		// TAMBAH AKUN LOGIN Teknisi
+		$queryauth = "INSERT INTO tb_auth VALUES (NULL, '$getIdInster', '$username_teknisi', '$password_teknisi', '$role_teknisi', '$status_teknisi')";
+		mysqli_query($conn, $queryauth);
+		move_uploaded_file($file_tmp, '../assets/images/teknisi/'.$nama_foto);
+		plugins(); ?>
+		<script>
+
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Data Teknisi Berhasil ditambah!',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'teknisi.php';
+				});
+            });
+		</script>
+	<?php }
+}
+
+
 
 ?>

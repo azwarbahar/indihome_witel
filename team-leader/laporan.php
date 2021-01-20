@@ -10,6 +10,16 @@
 
 		<title>TELKOM AKSES WITEL BALAIKOTA MAKASSAR</title>
 
+        <!-- DataTables -->
+        <link href="../assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables/fixedColumns.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
 		<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -93,15 +103,15 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="mitra.php" class="waves-effect"><i class="ti-briefcase"></i> <span> Mitra </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Administrasi </span></a>
                             </li>
 
                         </ul>
@@ -123,147 +133,73 @@
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Beranda</h4>
-                                <a href="" class="list-group-item active">
-                                    <h4 class="list-group-item-heading">Welcome,</h4>
-                                    <p class="list-group-item-text">Selamat Datang Kembali <b>Admin</b>  </p>
-                                </a>
-                            </div>
-                        </div> <br>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-assignment-returned text-primary"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Proses</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-assignment-turned-in text-success"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Selesai</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-assignment-late text-danger"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
-                                    <div class="text-muted m-t-5">Batal</div>
-                                </div>
+                                <h4 class="page-title">Laporan</h4><br>
+                                <ol class="breadcrumb">
+									<li>
+										<a href="index.php">Beranda</a>
+									</li>
+									<li class="active">
+										Laporan
+									</li>
+								</ol>
                             </div>
                         </div>
-
-
                         <div class="row">
-                            <div class="col-lg-5">
-                                <div class="portlet"><!-- /primary heading -->
-                                    <div class="portlet-heading">
-                                        <h3 class="portlet-title text-dark text-uppercase">
-                                            Mitra
-                                        </h3>
-                                        <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>
-                                            <span class="divider"></span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div id="portlet2" class="panel-collapse collapse in" aria-expanded="true">
-                                        <div class="portlet-body">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Nama</th>
-                                                            <th>Status</th>
-                                                            <th>Leader</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Antang</td>
-                                                            <td><span class="label label-info">Aktif</span></td>
-                                                            <td>Fitria</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Samata</td>
-                                                            <td><span class="label label-success">Aktif</span></td>
-                                                            <td>Fitria</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-
-                            <div class="col-lg-7" ">
-                                <div class="portlet" style="background-color: firebrick;"><!-- /primary heading -->
-                                    <div class="portlet-heading">
-                                        <h3 class="portlet-title text-uppercase">
-                                            Data Orderan Terbaru
-                                        </h3>
-                                        <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>
-                                            <span class="divider"></span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-                                    <div id="portlet3" class="panel-collapse collapse in" aria-expanded="true">
-                                        <div class="portlet-body" style="background-color: firebrick;">
-                                            <div class="table-responsive">
-                                                <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 300px; min-height: 300px; outline: none;">
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+                            		<!-- sample modal content -->
+                                    <div id="share-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog" style="width:55%;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h3 class="modal-title" id="custom-width-modalLabel"><strong>Data Order</strong></h3>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <div class="modal-body">
+                                                    <h4>Text in a modal</h4>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                                                    <hr>
+                                                    <h4>Overflowing text to show scroll behavior</h4>
+                                                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+
+                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
+                                    <br>
+                                    <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
+                                    <table id="datatable" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td style="text-align:center">
+                                            <button class="btn btn-icon waves-effect waves-light btn-primary" data-toggle="modal" data-target="#share-modal"> <i class="fa fa-share"></i> </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div> <!-- end col -->
-
+                            </div>
                         </div>
-
                     </div> <!-- container -->
                 </div> <!-- content -->
 
@@ -407,9 +343,63 @@
         <script src="../assets/js/jquery.nicescroll.js"></script>
         <script src="../assets/js/jquery.scrollTo.min.js"></script>
 
+        <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.bootstrap.js"></script>
+
+        <script src="../assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="../assets/plugins/datatables/buttons.bootstrap.min.js"></script>
+        <script src="../assets/plugins/datatables/jszip.min.js"></script>
+        <script src="../assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="../assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="../assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="../assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="../assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.scroller.min.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.colVis.js"></script>
+        <script src="../assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
+
+        <script src="../assets/pages/datatables.init.js"></script>
+
 
         <script src="../assets/js/jquery.core.js"></script>
         <script src="../assets/js/jquery.app.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({keys: true});
+        $('#datatable-responsive').DataTable();
+        $('#datatable-colvid').DataTable({
+            "dom": 'C<"clear">lfrtip',
+            "colVis": {
+                "buttonText": "Change columns"
+            }
+        });
+        $('#datatable-scroller').DataTable({
+            ajax: "assets/plugins/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        var table = $('#datatable-fixed-col').DataTable({
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            fixedColumns: {
+                leftColumns: 1,
+                rightColumns: 1
+            }
+        });
+    });
+    TableManageButtons.init();
+
+</script>
 
 	</body>
 </html>

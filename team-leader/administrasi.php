@@ -1,6 +1,6 @@
 <?php
 require('../koneksi.php');
-$admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
+$admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
 ?>
 
 <!DOCTYPE html>
@@ -117,15 +117,15 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                             </li>
 
                             <li class="has_sub">
-                                <a href="mitra.php" class="waves-effect"><i class="ti-briefcase"></i> <span> Mitra </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Administrator </span></a>
                             </li>
 
                         </ul>
@@ -147,13 +147,13 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Administrator</h4><br>
+                                <h4 class="page-title">Mitra</h4><br>
                                 <ol class="breadcrumb">
 									<li>
 										<a href="index.php">Beranda</a>
 									</li>
 									<li class="active">
-                                    Administrator
+                                    Mitra
 									</li>
 								</ol>
                             </div>
@@ -168,7 +168,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title">Tambah Administrator</h4>
+                                                    <h4 class="modal-title">Tambah Mitra</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form method="POST" action="controller.php" enctype="multipart/form-data">
@@ -214,7 +214,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                     </div>
                                     <!-- AKHIR MODAL TABAH ADMIN -->
 
-                                    <h4 class="m-t-0 header-title"><b>Data Administrator</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
                                     <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
@@ -222,7 +222,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>Nama Lengkap</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th>Status</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -232,7 +232,19 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                             <td style="text-align: center;"><?= $i ?></td>
                                             <td style="text-align: center;"><img  src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt="" border=3 height=40 width=40></img></td>
                                             <td><?= $dta['nama_admin'] ?></td>
-                                            <td><?= $dta['jekel_admin'] ?></td>
+                                            <td style="text-align: center;">
+                                            <?php
+                                                            if ($dta['status_admin']== "Aktif"){
+                                                            ?>
+                                                                <span class="label label-success"><?= $dta['status_admin'] ?></span>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span class="label label-danger"><?= $dta['status_admin'] ?></span>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                            </td>
                                             <td style="text-align: center;">
                                                 <div class="text-center">
                                                     <a href="#" type="button" data-toggle="modal" data-target="#detail<?= $dta['id_admin'] ?>" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>

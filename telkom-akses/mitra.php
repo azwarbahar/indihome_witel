@@ -6,9 +6,9 @@
 		<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
 		<meta name="author" content="Coderthemes">
 
-		<link rel="shortcut icon" href="../assets/images/favicon_1.ico">
+		<link rel="shortcut icon" href="../assets/images/favicon-indihome.png">
 
-		<title>Ubold - Responsive Admin Dashboard Template</title>
+		<title>TELKOM AKSES WITEL BALAIKOTA MAKASSAR</title>
 
         <!-- DataTables -->
         <link href="../assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
@@ -150,60 +150,60 @@
 
                                     <!-- MODAL TABAH MITRA -->
                                     <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog"> 
-                                            <div class="modal-content"> 
-                                                <div class="modal-header"> 
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                                                    <h4 class="modal-title">Tambah Mitra</h4> 
-                                                </div> 
+                                                    <h4 class="modal-title">Tambah Mitra</h4>
+                                                </div>
                                                 <div class="modal-body">
-                                                    <div class="row"> 
-                                                        <div class="col-md-12"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-3" class="control-label">Nama Mitra</label> 
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="field-3" class="control-label">Nama Mitra</label>
                                                                 <input type="text" class="form-control" id="field-3" placeholder="Address"> 
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                    <div class="row"> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-4" class="control-label">City</label> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="field-4" class="control-label">City</label>
                                                                 <input type="text" class="form-control" id="field-4" placeholder="Boston"> 
-                                                            </div> 
-                                                        </div> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-5" class="control-label">Country</label> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="field-5" class="control-label">Country</label>
                                                                 <input type="text" class="form-control" id="field-5" placeholder="United States"> 
-                                                            </div> 
-                                                        </div> 
-                                                        <div class="col-md-4"> 
-                                                            <div class="form-group"> 
-                                                                <label for="field-6" class="control-label">Zip</label> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="field-6" class="control-label">Zip</label>
                                                                 <input type="text" class="form-control" id="field-6" placeholder="123456"> 
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                    <div class="row"> 
-                                                        <div class="col-md-12"> 
-                                                            <div class="form-group no-margin"> 
-                                                                <label for="field-7" class="control-label">Personal Info</label> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group no-margin">
+                                                                <label for="field-7" class="control-label">Personal Info</label>
                                                                 <textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                </div> 
-                                                <div class="modal-footer"> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
                                                     <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
-                                                </div> 
-                                            </div> 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div><!-- /.modal -->
 
-                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
-                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
+                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4><br>
+                                    <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
@@ -231,73 +231,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="modal modal-add-alat in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: block;">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myLargeModalLabel">Tambah Inventori Alat</h4>
-                                    </div>
-                                    <div class="modal-body" style="padding: 20px 50px 0 50px">
-                                        <form id="fromAlat" action="#" enctype="multipart/form-data">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Nama Alat</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Alat" name="nama" id="nama">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Foto</label>
-                                                <div class="col-sm-9 bootstrap-filestyle">
-                                                    <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto" id="foto" required="" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);"><div class="bootstrap-filestyle input-group"><input type="text" class="form-control " placeholder="Belum ada foto" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="foto" class="btn btn-default "><span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> <span class="buttonText">Pilih Foto</span></label></span></div>
-                                                    <div class="row text-info" id="viewProgress" hidden="">
-                                                        <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 control-label">Kategori</label>
-                                                <div class="col-sm-9">
-                                                    <select name="kategori_id" id="kategori" class="form-control">
-                                                        
-                                                    <option value="16">Piring</option><option value="24">Mangkok</option><option value="25">Sendok</option><option value="26">Jepitan</option><option value="28">Pirex</option><option value="29">Sumpit</option><option value="31">Grill Pan</option><option value="32">Panci</option><option value="33">Kompor</option><option value="34">Talang</option><option value="35">Cerek</option><option value="36">Botol saus</option><option value="37">Tempat Bawang</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Jumlah Beli</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" required="" placeholder="Jumlah Beli" name="jumlah_alat" id="jumlah_alat">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Total Harga Beli</label>
-                                                <div class="input-group col-sm-9">
-                                                    <span class="input-group-addon">Rp.</span>
-                                                    <input type="number" class="form-control" required="" placeholder="Total Harga" name="total_harga" id="total_harga">
-                                                    <span class="input-group-addon">.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Nama Supplier</label>
-                                                <div class="col-sm-9">
-                                                    <select name="supplier_id" id="supplier" class="form-control">
-                                                        
-                                                    <option value="9">cv. swort art online</option><option value="8">Tidak Ada</option><option value="4">PT. Get Supplie</option><option value="3">CV. Properti Makassar</option><option value="1">Rahmat Ilyas</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-9">
-                                                    <button type="submit" name="simpanAlat" class="btn btn-default" id="upload">Simpan</button>
-                                                    <button type="" class="btn btn-primary" id="batal" data-dismiss="modal" aria-hidden="true">Batal</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
 
                     </div> <!-- container -->
                 </div> <!-- content -->

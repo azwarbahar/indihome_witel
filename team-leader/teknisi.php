@@ -1,6 +1,6 @@
 <?php
 require('../koneksi.php');
-$admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
+$teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
 ?>
 
 <!DOCTYPE html>
@@ -117,15 +117,15 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                             </li>
 
                             <li class="has_sub">
-                                <a href="mitra.php" class="waves-effect"><i class="ti-briefcase"></i> <span> Mitra </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Administrator </span></a>
                             </li>
 
                         </ul>
@@ -147,13 +147,13 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Administrator</h4><br>
+                                <h4 class="page-title">Teknisi</h4><br>
                                 <ol class="breadcrumb">
 									<li>
 										<a href="index.php">Beranda</a>
 									</li>
 									<li class="active">
-                                    Administrator
+                                    Teknisi
 									</li>
 								</ol>
                             </div>
@@ -168,29 +168,35 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title">Tambah Administrator</h4>
+                                                    <h4 class="modal-title">Tambah Teknisi</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form method="POST" action="controller.php" enctype="multipart/form-data">
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_admin" id="nama_admin">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_teknisi" id="nama_teknisi">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Foto</label>
                                                             <div class="col-sm-9 bootstrap-filestyle">
-                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto_admin" id="foto_admin" required="">
+                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto_teknisi" id="foto_teknisi" required="">
                                                                 <div class="row text-info" id="viewProgress" hidden="">
                                                                     <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">No Telpon</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nomor Telpon" name="telpon_teknisi" id="telpon_teknisi">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                             <div class="col-sm-9">
-                                                                <select name="jenis_kelamin_admin" id="jenis_kelamin_admin" class="form-control">
+                                                                <select name="jenis_kelamin_teknisi" id="jenis_kelamin_teknisi" class="form-control">
                                                                 <option value="Laki - laki">Laki - laki</option>
                                                                 <option value="Perempuan">Perempuan</option>
                                                                 </select>
@@ -199,13 +205,13 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">Username dan Password</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_teknisi" id="username_teknisi">
                                                             </div>
                                                         </div>
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button> 
-                                                            <button type="submit" name="submit_admin" class="btn btn-default waves-effect">Simpan</button> 
+                                                            <button type="submit" name="submit_teknisi" class="btn btn-default waves-effect">Simpan</button> 
                                                         </div>
                                                     </form>
                                                 </div>
@@ -214,36 +220,52 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                     </div>
                                     <!-- AKHIR MODAL TABAH ADMIN -->
 
-                                    <h4 class="m-t-0 header-title"><b>Data Administrator</b></h4>
-                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
+                                    <h4 class="m-t-0 header-title"><b>Data Teknisi</b></h4>
+                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Teknisi</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>Nama Lengkap</th>
+                                            <th>Telpon</th>
                                             <th>Jenis Kelamin</th>
+                                            <th>Status</th>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $i = 1; foreach($admin as $dta) { ?>
+                                        <?php $i = 1; foreach($teknisi as $dta) { ?>
                                         <tr>
                                             <td style="text-align: center;"><?= $i ?></td>
-                                            <td style="text-align: center;"><img  src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt="" border=3 height=40 width=40></img></td>
-                                            <td><?= $dta['nama_admin'] ?></td>
-                                            <td><?= $dta['jekel_admin'] ?></td>
+                                            <td style="text-align: center;"><img  src="../assets/images/teknisi/<?php echo $dta['foto_teknisi'] ?>" alt="" border=3 height=40 width=40></img></td>
+                                            <td><?= $dta['nama_teknisi'] ?></td>
+                                            <td><?= $dta['telpon_teknisi'] ?></td>
+                                            <td><?= $dta['jekel_teknisi'] ?></td>
+                                            <td style="text-align: center;">
+                                            <?php
+                                                            if ($dta['status_teknisi']== "Aktif"){
+                                                            ?>
+                                                                <span class="label label-success"><?= $dta['status_teknisi'] ?></span>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span class="label label-danger"><?= $dta['status_teknisi'] ?></span>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                            </td>
                                             <td style="text-align: center;">
                                                 <div class="text-center">
-                                                    <a href="#" type="button" data-toggle="modal" data-target="#detail<?= $dta['id_admin'] ?>" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                                    <a href="#" type="button" data-toggle="modal" data-target="#edit<?= $dta['id_admin'] ?>"  class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" type="button" data-toggle="modal" data-target="#hapus<?= $dta['id_admin'] ?>" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a>
+                                                    <a href="#" type="button" data-toggle="modal" data-target="#detail<?= $dta['id_teknisi'] ?>" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                    <a href="#" type="button" data-toggle="modal" data-target="#edit<?= $dta['id_teknisi'] ?>"  class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" type="button" data-toggle="modal" data-target="#hapus<?= $dta['id_teknisi'] ?>" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
 
                                         <!-- MODAL DETAIL -->
-                                        <div id="detail<?= $dta['id_admin'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                        <div id="detail<?= $dta['id_teknisi'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:40%;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -252,21 +274,21 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                                     </div>
                                                     <div class="modal-body row" style="padding: 20px 50px 0 50px">
                                                         <div class="col-md-4">
-                                                            <img src="../assets/images/admin/<?= $dta['foto_admin'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
+                                                            <img src="../assets/images/teknisi/<?= $dta['foto_teknisi'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
                                                         </div>
                                                         <div class="col-md-8">
                                                             <h4>Info Administrator</h4>
-                                                            <p><b>Nama: </b><span class="namaView"><?= $dta['nama_admin'] ?></span></p>
-                                                            <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $dta['jekel_admin'] ?></span></p>
-                                                            <p><b>Uesrname: </b><span class="usernameView"><?= $dta['username_admin'] ?></span></p>
+                                                            <p><b>Nama: </b><span class="namaView"><?= $dta['nama_teknisi'] ?></span></p>
+                                                            <p><b>Telpon: </b><span class="usernameView"><?= $dta['telpon_teknisi'] ?></span></p>
+                                                            <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $dta['jekel_teknisi'] ?></span></p>
                                                             <?php
-                                                            if ($dta['status_admin']== "Aktif"){
+                                                            if ($dta['status_teknisi']== "Aktif"){
                                                             ?>
-                                                                <p><b>Status: </b><span class="label label-success"><?= $dta['status_admin'] ?></span></p>
+                                                                <p><b>Status: </b><span class="label label-success"><?= $dta['status_teknisi'] ?></span></p>
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <p><b>Status: </b><span class="label label-danger"><?= $dta['status_admin'] ?></span></p>
+                                                                <p><b>Status: </b><span class="label label-danger"><?= $dta['status_teknisi'] ?></span></p>
                                                             <?php
                                                             }
                                                             ?>
@@ -281,7 +303,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                         </div><!-- /.modal -->
 
                                         <!-- MODAL EDIT ADMIN -->
-                                        <div id="edit<?= $dta['id_admin'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div id="edit<?= $dta['id_teknisi'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -293,24 +315,30 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" value="<?= $dta['nama_admin'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_admin" id="nama_admin">
+                                                                    <input type="text" value="<?= $dta['nama_teknisi'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_teknisi" id="nama_teknisi">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Foto</label>
                                                                 <div class="col-sm-9 bootstrap-filestyle">
-                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_admin'] ?>" name="foto_admin" id="foto_admin<?= $dta['id_admin'] ?>" required="">
+                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_teknisi'] ?>" name="foto_teknisi" id="foto_teknisi<?= $dta['id_teknisi'] ?>" required="">
                                                                     <div class="row text-info" id="viewProgress" hidden="">
                                                                         <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">No Telpon</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" value="<?= $dta['telpon_teknisi'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nomor Telpon" name="telpon_teknisi" id="telpon_teknisi">
+                                                            </div>
+                                                        </div>
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                                 <div class="col-sm-9">
-                                                                    <select name="jenis_kelamin_admin" id="jenis_kelamin_admin" class="form-control">
+                                                                    <select name="jenis_kelamin_teknisi" id="jenis_kelamin_teknisi" class="form-control">
                                                                     <?php
-                                                                    if ($dta['jekel_admin']=="Laki - laki"){
+                                                                    if ($dta['jekel_teknisi']=="Laki - laki"){
                                                                         echo "<option selected='selected' value='Laki - laki'>Laki - laki</option>
                                                                         <option value='Perempuan'>Perempuan</option>";
                                                                     } else{
@@ -324,15 +352,23 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Username dan Password</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" value="<?= $dta['username_admin'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+
+                                                                <?php
+                                                                    $username_teknisi = mysqli_query($conn, "SELECT * FROM tb_auth WHERE id_akun = $dta[id_teknisi]");
+                                                                    while($row=mysqli_fetch_assoc($username_teknisi)) {
+                                                                ?>
+                                                                <input type="text" value="<?= $row['username_auth'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+                                                                <?php
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                             </div>
 
                                                             <div class="modal-footer">
-                                                            <input type="hidden" name="foto_now" value="<?= $dta['foto_admin'] ?>" >
-                                                            <input type="hidden" name="id_admin" value="<?= $dta['id_admin'] ?>" >
+                                                            <input type="hidden" name="foto_now" value="<?= $dta['foto_teknisi'] ?>" >
+                                                            <input type="hidden" name="id_teknisi" value="<?= $dta['id_teknisi'] ?>" >
                                                                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
-                                                                <button type="submit" name="edit_admin" class="btn btn-default waves-effect">Simpan</button>
+                                                                <button type="submit" name="edit_teknisi" class="btn btn-default waves-effect">Simpan</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -342,7 +378,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                         <!-- AKHIR MODAL EDIT ADMIN -->
 
                                         <!-- MODAL HAPUS -->
-                                        <div class="modal fade" tabindex="-1" id="hapus<?= $dta['id_admin'] ?>">
+                                        <div class="modal fade" tabindex="-1" id="hapus<?= $dta['id_teknisi'] ?>">
                                             <div class="modal-dialog">
                                             <div class="modal-content bg-danger">
                                                 <div class="modal-header">
