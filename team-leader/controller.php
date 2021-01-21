@@ -45,7 +45,6 @@ if (isset($_POST['submit_admin'])) {
 	<?php }
 }
 
-
 // UPDATE ADMIN
 if (isset($_POST['edit_admin'])) {
 	$id_admin = $_POST['id_admin'];
@@ -116,6 +115,7 @@ if (isset($_GET['hapus_admin'])) {
 
 // SUBMIT TEKNISI
 if (isset($_POST['submit_teknisi'])) {
+	$id_mitra = $_POST["id_mitra"];
 	$nama_teknisi = $_POST['nama_teknisi'];
 	$telpon_teknisi = $_POST['telpon_teknisi'];
 	$jenis_kelamin_teknisi = $_POST['jenis_kelamin_teknisi'];
@@ -131,7 +131,7 @@ if (isset($_POST['submit_teknisi'])) {
     $file_tmp = $_FILES['foto_teknisi']['tmp_name'];
 
     // TAMBAH DATA
-	$query= "INSERT INTO tb_teknisi VALUES (NULL, '$nama_teknisi', '$telpon_teknisi', '$jenis_kelamin_teknisi', '$nama_foto', '$status_teknisi')";
+	$query= "INSERT INTO tb_teknisi VALUES (NULL, '$id_mitra', '$nama_teknisi', '$telpon_teknisi', '$jenis_kelamin_teknisi', '$nama_foto', '$status_teknisi')";
 	mysqli_query($conn, $query);
 	if (mysqli_affected_rows($conn) > 0) {
 		//get Id Teknisi
@@ -152,6 +152,76 @@ if (isset($_POST['submit_teknisi'])) {
 					location.href = 'teknisi.php';
 				});
             });
+		</script>
+	<?php }
+}
+
+// UPDATE TEKNISI
+if (isset($_POST['edit_teknisi'])) {
+	$id_teknisi = $_POST['id_teknisi'];
+	$nama_teknisi = $_POST['nama_teknisi'];
+	$telpon_teknisi = $_POST['telpon_teknisi'];
+	$jenis_kelamin_teknisi = $_POST['jenis_kelamin_teknisi'];
+	$username_teknisi = $_POST['username_teknisi'];
+
+    // SET FOTO
+	if ($_FILES['foto_teknisi']['name'] != '') {
+		$foto = $_FILES['foto_teknisi']['name'];
+		$ext = pathinfo($foto, PATHINFO_EXTENSION);
+		$nama_foto = "image_".time().".".$ext;
+		$file_tmp = $_FILES['foto_teknisi']['tmp_name'];
+		// HAPUS OLD FOTO
+		$target = "foto/".$_POST['foto_now'];
+		if (file_exists($target) && $_POST['foto_now'] != 'default.png') unlink($target);
+		// UPLOAD NEW FOTO
+		move_uploaded_file($file_tmp, '../assets/images/teknisi/'.$nama_foto);
+	} else {
+		$nama_foto = $_POST['foto_now'];
+	}
+		$query = "UPDATE tb_teknisi SET nama_teknisi = '$nama_teknisi',
+											telpon_teknisi = '$telpon_teknisi',
+											jekel_teknisi = '$jenis_kelamin_teknisi',
+											foto_teknisi = '$nama_foto' WHERE id_teknisi = '$id_teknisi'";
+		mysqli_query($conn, $query);
+	// EDIT PARTAI
+	if (mysqli_affected_rows($conn) > 0) {
+		$query1 = "UPDATE tb_auth SET username_auth = '$username_teknisi' WHERE id_akun = '$id_teknisi' AND role_auth ='Teknisi'";
+		mysqli_query($conn, $query1);
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Data Teknisi berhasil diubah',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'teknisi.php';
+				});
+			});
+		</script>
+	<?php }
+}
+
+// HAPUS TEKNISI
+if (isset($_GET['hapus_teknisi'])) {
+	$id_teknisi = $_GET['id_teknisi'];
+
+	$query = "DELETE FROM tb_teknisi WHERE id_teknisi = '$id_teknisi'";
+	mysqli_query($conn, $query);
+	if (mysqli_affected_rows($conn) > 0) {
+		$query2 = "DELETE FROM tb_auth  WHERE id_akun = '$id_teknisi' AND role_auth ='Teknisi'";
+		mysqli_query($conn, $query2);
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil Dihapus',
+					text: 'Data Teknisi berhasil dihapus',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'teknisi.php';
+				});
+			});
 		</script>
 	<?php }
 }

@@ -1,3 +1,14 @@
+<?php
+require('../koneksi.php');
+
+if (!isset($_SESSION['login_TL'])) {
+  header("location: ../login.php");
+}
+
+$get_id_session = $_SESSION['get_id'];
+$query_header_akun = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$get_id_session'");
+$get_data_akun = mysqli_fetch_assoc($query_header_akun);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -79,7 +90,7 @@
                                         <li><a href=""><strong>Admin</strong></a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -89,6 +100,25 @@
                 </div>
             </div>
             <!-- Top Bar End -->
+
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="mySmallModalLabel">Logout Akun</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p>Yakin Ingin Logout Akun ?</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
+                        <a href="../logout.php?logout=true&for=login_TL" type="button" class="btn btn-primary waves-effect waves-light">Logout</a>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
 
 
             <!-- ========== Left Sidebar Start ========== -->

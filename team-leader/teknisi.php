@@ -1,6 +1,12 @@
 <?php
 require('../koneksi.php');
-$teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
+if (!isset($_SESSION['login_TL'])) {
+    header("location: ../login.php");
+  }
+  $get_id_session = $_SESSION['get_id'];
+  $query_header_akun = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$get_id_session'");
+  $get_data_akun = mysqli_fetch_assoc($query_header_akun);
+  $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi WHERE id_mitra='$get_id_session'");
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +99,7 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                                         <li><a href=""><strong>Admin</strong></a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -103,6 +109,25 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                 </div>
             </div>
             <!-- Top Bar End -->
+
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="mySmallModalLabel">Logout Akun</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p>Yakin Ingin Logout Akun ?</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
+                        <a href="../logout.php?logout=true&for=login_TL" type="button" class="btn btn-primary waves-effect waves-light">Logout</a>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
 
 
             <!-- ========== Left Sidebar Start ========== -->
@@ -210,6 +235,7 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                                                         </div>
 
                                                         <div class="modal-footer">
+                                                            <input type="hidden" name="id_mitra" value="<?= $get_id_session ?>">
                                                             <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button> 
                                                             <button type="submit" name="submit_teknisi" class="btn btn-default waves-effect">Simpan</button> 
                                                         </div>
@@ -321,7 +347,7 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Foto</label>
                                                                 <div class="col-sm-9 bootstrap-filestyle">
-                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_teknisi'] ?>" name="foto_teknisi" id="foto_teknisi<?= $dta['id_teknisi'] ?>" required="">
+                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_teknisi'] ?>" name="foto_teknisi" id="foto_teknisi<?= $dta['id_teknisi'] ?>">
                                                                     <div class="row text-info" id="viewProgress" hidden="">
                                                                         <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
                                                                     </div>
@@ -357,7 +383,7 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                                                                     $username_teknisi = mysqli_query($conn, "SELECT * FROM tb_auth WHERE id_akun = $dta[id_teknisi]");
                                                                     while($row=mysqli_fetch_assoc($username_teknisi)) {
                                                                 ?>
-                                                                <input type="text" value="<?= $row['username_auth'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+                                                                <input type="text" value="<?= $row['username_auth'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_teknisi" id="username_teknisi">
                                                                 <?php
                                                                     }
                                                                     ?>
@@ -382,17 +408,17 @@ $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi");
                                             <div class="modal-dialog">
                                             <div class="modal-content bg-danger">
                                                 <div class="modal-header">
-                                                <h4 class="modal-title" style="color: white;">Hapus Akun Admin</h4>
+                                                <h4 class="modal-title" style="color: white;">Hapus Data Teknisi</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <p style="color: white;">Yakin Ingin Menghapus Akun Admin ?</p>
+                                                <p style="color: white;">Yakin Ingin Menghapus Data Teknisi ?</p>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-outline-dark" style="background-color: silver;" data-dismiss="modal">Batal</button>
-                                                <a href="controller.php?hapus_admin=true&id_admin=<?= $dta['id_admin'] ?>" type="button" class="btn btn-outline-dark" style="background-color: white;">Hapus</a>
+                                                <a href="controller.php?hapus_teknisi=true&id_teknisi=<?= $dta['id_teknisi'] ?>" type="button" class="btn btn-outline-dark" style="background-color: white;">Hapus</a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->
