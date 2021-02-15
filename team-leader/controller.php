@@ -25,7 +25,7 @@ if (isset($_POST['submit_admin'])) {
     $file_tmp = $_FILES['foto_admin']['tmp_name'];
 
     // TAMBAH DATA
-	$query= "INSERT INTO tb_admin VALUES (NULL, '$nama_admin', '$jenis_kelamin_admin', '$username_admin', '$password', '$nama_foto', '$role_admin', '$status_admin')";
+	$query= "INSERT INTO tb_admin VALUES (NULL, '', '$nama_admin', '$jenis_kelamin_admin', '$username_admin', '$password', '$nama_foto', '$role_admin', '$status_admin')";
 	mysqli_query($conn, $query);
 	if (mysqli_affected_rows($conn) > 0) {
 		move_uploaded_file($file_tmp, '../assets/images/admin/'.$nama_foto);
