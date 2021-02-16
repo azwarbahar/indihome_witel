@@ -8,9 +8,9 @@
  $row_order_all = mysqli_num_rows($order_all);
  $row_order_done = mysqli_num_rows($order_done);
 
-     $resul_row = (object)['row_order_all' => $row_order_all,
-                    'row_order_done' => $row_order_done
-        ];
+    $resul_row = (object)['row_order_all' => $row_order_all,
+                          'row_order_done' => $row_order_done
+    ];
 
  echo ($row_order_all) ?
  json_encode(array("kode" => 1, "result_row" => $resul_row)) :
