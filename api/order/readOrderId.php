@@ -2,11 +2,10 @@
  require_once '../../koneksi.php';
 
  $id_order = $_GET["id_order"];
- $query = "SELECT * FROM tb_order WHERE id_order = '$id_order' ";
+ $query = "SELECT * FROM tb_order WHERE id_order = '$id_order'";
 
  $result = mysqli_query($conn, $query);
 
-//  $array = array();
  while($row = mysqli_fetch_assoc($result)){
      $array = $row;
  }
