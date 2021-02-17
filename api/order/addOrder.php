@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telpon = $_POST['telpon'];
     $alamat = $_POST['alamat'];
     $sto = "PNK-ANT";
-    $status_order = "PROCCESS";
+    $status_order = "NEW";
     $paket_id = $_POST['paket_id'];
     $sales_id = $_POST['sales_id'];
     $teknisi_id = null;

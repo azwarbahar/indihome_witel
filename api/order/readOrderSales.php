@@ -3,8 +3,11 @@
 
  $status_order = $_GET["status_order"];
  $sales_id = $_GET["sales_id"];
-
- $query = "SELECT * FROM tb_order WHERE status_order='$status_order' AND sales_id='$sales_id' ORDER BY id_order DESC";
+ if ($status_order == "PROCCESS"){
+   $query = "SELECT * FROM tb_order WHERE status_order='PROCCESS' OR status_order='NEW' AND sales_id='$sales_id' ORDER BY id_order DESC";
+ } else{
+   $query = "SELECT * FROM tb_order WHERE status_order='$status_order' AND sales_id='$sales_id' ORDER BY id_order DESC";
+ }
 
  $result = mysqli_query($conn, $query);
 
