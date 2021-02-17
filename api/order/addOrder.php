@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sales_id = $_POST['sales_id'];
     $teknisi_id = null;
     $mitra_id = null;
+    $keterangan = "";
 
     $query = "INSERT INTO tb_order values('','$myir',
                                             '$nama_lengkap',
@@ -26,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             '$paket_id',
                                             '$sales_id',
                                             '$teknisi_id',
-                                            '$mitra_id')";
+                                            '$mitra_id',
+                                            '$keterangan')";
 
     $exeQuery =  mysqli_query($conn, $query);
     echo ($exeQuery) ? json_encode(array('kode' =>1, 'pesan' => 'Berhasil Menambahkan Data'

@@ -2,8 +2,12 @@
  require_once '../../koneksi.php';
 
  $teknisi_id = $_GET["teknisi_id"];
-
- $query = "SELECT * FROM tb_order WHERE teknisi_id = '$teknisi_id' ORDER BY id_order DESC";
+ $status_order = $_GET["status_order"];
+if ($status_order == "RIWAYAT"){
+   $query = "SELECT * FROM tb_order WHERE ( status_order = 'DONE' OR status_order = 'CANCEL' ) AND teknisi_id = '$teknisi_id' ORDER BY id_order DESC";
+} else {
+   $query = "SELECT * FROM tb_order WHERE status_order = 'PROCCESS' AND teknisi_id = '$teknisi_id' ORDER BY id_order DESC";
+}
 
  $result = mysqli_query($conn, $query);
 
