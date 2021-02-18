@@ -1,3 +1,7 @@
+<?php
+require('../koneksi.php');
+$order = mysqli_query($conn, "SELECT * FROM tb_order");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -188,31 +192,45 @@
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
-                                    <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Data Laporan</b></h4>
                                     <br>
                                     <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
+                                            <th style="text-align:center">MYIR</th>
+                                            <th>Nama</th>
+                                            <th>Telpon</th>
+                                            <th>STO</th>
+                                            <th>Tanggal</th>
+                                            <th>Status</th>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td style="text-align:center">
-                                            <button class="btn btn-icon waves-effect waves-light btn-primary" data-toggle="modal" data-target="#share-modal"> <i class="fa fa-share"></i> </button>
-                                            </td>
-                                        </tr>
+                                        <?php $i = 1; foreach($order as $dta) { ?>
+                                            <tr>
+                                                <td style="text-align:center"><?= $dta['myir'] ?></td>
+                                                <td><?= $dta['nama_lengkap'] ?></td>
+                                                <td><?= $dta['telpon'] ?></td>
+                                                <td><?= $dta['sto'] ?></td>
+                                                <td><?= $dta['tanggal'] ?></td>
+                                                <?php
+                                                if ($dta['status_order'] == "NEW"){
+                                                    echo "<td style='text-align:center'><span class='label label-primary'>PROCCESS</span></td>";
+                                                } else if ($dta['status_order'] == "PROCCESS"){
+                                                    echo "<td style='text-align:center'><span class='label label-primary'>PROCCESS</span></td>";
+                                                } else if ($dta['status_order'] == "DONE"){
+                                                    echo "<td style='text-align:center'><span class='label label-success'>DONE</span></td>";
+                                                } else if ($dta['status_order'] == "CANCEL"){
+                                                    echo "<td style='text-align:center'><span class='label label-danger'>CANCEL</span></td>";
+                                                }
+                                                ?>
+                                                <td style="text-align:center">
+                                                <button class="btn btn-icon waves-effect waves-light btn-primary" data-toggle="modal" data-target="#share-modal"> <i class="fa fa-share"></i> </button>
+                                                </td>
+                                            </tr>
+                                        <?php $i = $i + 1; } ?>
                                         </tbody>
                                     </table>
                                 </div>
