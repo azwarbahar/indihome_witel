@@ -376,11 +376,11 @@ if (!isset($_SESSION['login_TL'])) {
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">Username dan Password</label>
+                                                                <label class="col-sm-3 col-form-label">Username</label>
                                                                 <div class="col-sm-9">
 
                                                                 <?php
-                                                                    $username_teknisi = mysqli_query($conn, "SELECT * FROM tb_auth WHERE id_akun = $dta[id_teknisi]");
+                                                                    $username_teknisi = mysqli_query($conn, "SELECT * FROM tb_auth WHERE id_akun = $dta[id_teknisi] AND role_auth = 'Teknisi'");
                                                                     while($row=mysqli_fetch_assoc($username_teknisi)) {
                                                                 ?>
                                                                 <input type="text" value="<?= $row['username_auth'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_teknisi" id="username_teknisi">

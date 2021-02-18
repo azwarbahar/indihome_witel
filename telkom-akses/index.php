@@ -1,3 +1,6 @@
+<?php
+require('../koneksi.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -194,24 +197,22 @@
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Nama</th>
+                                                            <th>STO</th>
                                                             <th>Status</th>
                                                             <th>Leader</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php
+                                                            $mitra = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
+                                                            $i = 1; foreach($mitra as $dta) { ?>
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Antang</td>
-                                                            <td><span class="label label-info">Aktif</span></td>
-                                                            <td>Fitria</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Samata</td>
+                                                            <td><?= $i ?></td>
+                                                            <td>PNK-ANT</td>
                                                             <td><span class="label label-success">Aktif</span></td>
-                                                            <td>Fitria</td>
+                                                            <td><?= $dta['nama_admin'] ?></td>
                                                         </tr>
+                                                        <?php $i = $i + 1; } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -237,42 +238,27 @@
                                         <div class="portlet-body" style="background-color: firebrick;">
                                             <div class="table-responsive">
                                                 <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 300px; min-height: 300px; outline: none;">
+                                                <?php
+                                                    $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order='NEW'");
+                                                    $i = 1; foreach($order as $dta) { ?>
                                                     <a href="#">
                                                         <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
                                                             <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
+                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong><?= $dta['myir'] ?></strong></p>
+                                                            <p class="inbox-item-author">Nama : <?= $dta['nama_lengkap'] ?></p>
+                                                            <?php
+                                                                $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta[paket_id]'");
+                                                                $get_data_paket = mysqli_fetch_assoc($query_paket);
+                                                                $nama_paket = $get_data_paket['nama_paket'];
+                                                                $kecepatan = $get_data_paket['kecepatan_paket'];
+                                                                $kuota_paket = $get_data_paket['kuota_paket'];
+                                                                $initPaket = $kecepatan . ", " . $kuota_paket . ", ". $nama_paket;
+                                                            ?>
+                                                            <p class="inbox-item-text"><?= $initPaket ?></p>
+                                                            <p class="inbox-item-date"><?= $dta['tanggal'] ?></p>
                                                         </div>
                                                     </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
-                                                        <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
-                                                            <p class="inbox-item-author" style="font-size: 20px;"><strong>MYIR-123456789</strong></p>
-                                                            <p class="inbox-item-author">Nama : Fitria</p>
-                                                            <p class="inbox-item-text">30 Mbps, 300 Menit, Add on Gamer, Langit Music Cloud, Seamles</p>
-                                                            <p class="inbox-item-date">Jumat 30 Januari 2021</p>
-                                                        </div>
-                                                    </a>
+                                                    <?php $i = $i + 1; } ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -293,119 +279,6 @@
             <!-- ============================================================== -->
             <!-- End Right content here -->
             <!-- ============================================================== -->
-
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-1.jpg" alt="">
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-2.jpg" alt="">
-                                </div>
-                                <span class="name">Tomaslau</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-3.jpg" alt="">
-                                </div>
-                                <span class="name">Stillnotdavid</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-4.jpg" alt="">
-                                </div>
-                                <span class="name">Kurafire</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-5.jpg" alt="">
-                                </div>
-                                <span class="name">Shahedk</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-6.jpg" alt="">
-                                </div>
-                                <span class="name">Adhamdannaway</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-7.jpg" alt="">
-                                </div>
-                                <span class="name">Ok</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-8.jpg" alt="">
-                                </div>
-                                <span class="name">Arashasghari</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-9.jpg" alt="">
-                                </div>
-                                <span class="name">Joshaustin</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-10.jpg" alt="">
-                                </div>
-                                <span class="name">Sortino</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /Right-bar -->
-
-
         </div>
         <!-- END wrapper -->
 
