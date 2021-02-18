@@ -15,6 +15,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
 
         <title>TELKOM AKSES WITEL BALAIKOTA MAKASSAR</title>
 
+        <link href="../assets/plugins/smoothproducts/css/smoothproducts.css" rel="stylesheet" type="text/css" />
         <!-- Plugins css-->
         <link href="../assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
         <link href="../assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" />
@@ -249,7 +250,11 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
                                         <?php $i = 1; foreach($admin as $dta) { ?>
                                         <tr>
                                             <td style="text-align: center;"><?= $i ?></td>
-                                            <td style="text-align: center;"><img  src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt="" border=3 height=40 width=40></img></td>
+                                            <td style="text-align: center;">
+                                                <div class="sp-wrap">
+                                                    <a href="../assets/images/admin/<?php echo $dta['foto_admin'] ?>"><img src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt=""  border=3 height=40 width=40></a>
+                                                </div>
+                                            </td>
                                             <td><?= $dta['nama_admin'] ?></td>
                                             <td><?= $dta['jekel_admin'] ?></td>
                                             <td style="text-align: center;">
@@ -454,6 +459,14 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TA'");
 
         <script src="../assets/js/jquery.core.js"></script>
         <script src="../assets/js/jquery.app.js"></script>
+
+<script src="../assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
+<script type="text/javascript">
+// wait for images to load
+$(window).load(function() {
+$('.sp-wrap').smoothproducts();
+});
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {

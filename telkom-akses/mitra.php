@@ -315,7 +315,6 @@ require('../koneksi.php');
         <script src="../assets/plugins/datatables/dataTables.colVis.js"></script>
         <script src="../assets/plugins/datatables/dataTables.fixedColumns.min.js"></script>
 
-        <script src="../assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
 
         <script src="../assets/pages/datatables.init.js"></script>
 
@@ -323,6 +322,7 @@ require('../koneksi.php');
         <script src="../assets/js/jquery.core.js"></script>
         <script src="../assets/js/jquery.app.js"></script>
 
+        <script src="../assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
 <script type="text/javascript">
     // wait for images to load
     $(window).load(function() {
