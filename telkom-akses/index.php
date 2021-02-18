@@ -209,7 +209,7 @@ require('../koneksi.php');
                                                         <tr>
                                                             <td><?= $i ?></td>
                                                             <td>PNK-ANT</td>
-                                                            <td><span class="label label-success">Aktif</span></td>
+                                                            <td><span class="label label-success"><?= $dta['status_admin'] ?></span></td>
                                                             <td><?= $dta['nama_admin'] ?></td>
                                                         </tr>
                                                         <?php $i = $i + 1; } ?>
