@@ -409,7 +409,7 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
             }
         });
         $('#datatable-scroller').DataTable({
-            ajax: "assets/plugins/datatables/json/scroller-demo.json",
+            ajax: "..assets/plugins/datatables/json/scroller-demo.json",
             deferRender: true,
             scrollY: 380,
             scrollCollapse: true,

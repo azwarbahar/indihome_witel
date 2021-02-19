@@ -31,7 +31,6 @@ if (isset($_POST['submit_admin'])) {
 		move_uploaded_file($file_tmp, '../assets/images/admin/'.$nama_foto);
 		plugins(); ?>
 		<script>
-
 			$(document).ready(function() {
 				swal({
 					title: 'Berhasil',

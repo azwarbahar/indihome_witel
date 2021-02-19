@@ -156,21 +156,36 @@ require('../koneksi.php');
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-assignment-returned text-primary"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
+                                    <?php
+                                        $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order = 'NEW' OR status_order = 'PROCCESS'");
+                                        $row_order = mysqli_num_rows($order);
+                                        $row_order_final = $row_order;
+                                    ?>
+                                    <h2 class="m-0 text-dark counter font-600"><?= $row_order_final ?></h2>
                                     <div class="text-muted m-t-5">Proses</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-assignment-turned-in text-success"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
+                                    <?php
+                                        $order1 = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order = 'DONE'");
+                                        $row_order1 = mysqli_num_rows($order1);
+                                        $row_order_final1 = $row_order1;
+                                    ?>
+                                    <h2 class="m-0 text-dark counter font-600"><?= $row_order_final1 ?></h2>
                                     <div class="text-muted m-t-5">Selesai</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-assignment-late text-danger"></i>
-                                    <h2 class="m-0 text-dark counter font-600">100</h2>
+                                    <?php
+                                        $order2 = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order = 'CANCEL'");
+                                        $row_order2 = mysqli_num_rows($order2);
+                                        $row_order_final2 = $row_order2;
+                                    ?>
+                                    <h2 class="m-0 text-dark counter font-600"><?= $row_order_final2 ?></h2>
                                     <div class="text-muted m-t-5">Batal</div>
                                 </div>
                             </div>
@@ -190,6 +205,7 @@ require('../koneksi.php');
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
+                                        <a style="margin-left: 16px;" href="mitra.php" class="btn btn-primary btn-sm waves-effect waves-light">Lihat Semua</a>
                                     <div id="portlet2" class="panel-collapse collapse in" aria-expanded="true">
                                         <div class="portlet-body">
                                             <div class="table-responsive">
@@ -231,7 +247,9 @@ require('../koneksi.php');
                                             <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>
                                             <span class="divider"></span>
                                         </div>
-                                        <div class="clearfix"></div>
+                                        <div class="clearfix">
+                                            <a href="laporan.php" class="pull-right btn btn-success btn-sm waves-effect waves-light">Lihat Semua</a>
+                                        </div>
                                     </div>
 
                                     <div id="portlet3" class="panel-collapse collapse in" aria-expanded="true">
@@ -239,12 +257,18 @@ require('../koneksi.php');
                                             <div class="table-responsive">
                                                 <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 300px; min-height: 300px; outline: none;">
                                                 <?php
-                                                    $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order='NEW'");
-                                                    $i = 1; foreach($order as $dta) { ?>
+                                                    $order_data = mysqli_query($conn, "SELECT * FROM tb_order WHERE status_order='NEW'");
+                                                    $row_order_data = mysqli_num_rows($order_data);
+                                                    if ($row_order_data < 1){
+                                                        echo " <div class='container'>
+                                                                    <h3 style='color: white; text-align: center;' ><i> - Tidak Ada Orderan Terbaru - </i></h3>
+                                                                </div> ";
+                                                    } else {
+                                                    $i = 1; foreach($order_data as $dta) { ?>
                                                     <a href="#">
                                                         <div class="inbox-item card-box" style="padding: 10px; margin: 10px;">
-                                                            <!-- <div class="inbox-item-img"><img src="../assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div> -->
                                                             <p class="inbox-item-author" style="font-size: 20px;"><strong><?= $dta['myir'] ?></strong></p>
+                                                            <button class="pull-right btn btn-danger btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-bagikan<?= $i ?>" >  <i class="fa fa-share"></i> Bagikan</button>
                                                             <p class="inbox-item-author">Nama : <?= $dta['nama_lengkap'] ?></p>
                                                             <?php
                                                                 $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta[paket_id]'");
@@ -258,7 +282,104 @@ require('../koneksi.php');
                                                             <p class="inbox-item-date"><?= $dta['tanggal'] ?></p>
                                                         </div>
                                                     </a>
-                                                    <?php $i = $i + 1; } ?>
+
+                                                    <!-- MODAL BAGIKAN -->
+                                                    <div id="modal-bagikan<?= $i ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                                        <div class="modal-dialog" style="width:55%;">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                    <h4 class="modal-title" id="custom-width-modalLabel">Bagikan Ke Mitra</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="clearfix">
+                                                                        <div class="pull-left">
+                                                                        <h3 style="color: #850A05 ;" > <strong><?= $dta['myir'] ?></strong></h3>
+                                                                        <h4><strong>Paket : </strong>
+                                                                        <?php
+                                                                            $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta[paket_id]'");
+                                                                            $get_data_paket = mysqli_fetch_assoc($query_paket);
+                                                                            $nama_paket = $get_data_paket['nama_paket'];
+                                                                            $kecepatan = $get_data_paket['kecepatan_paket'];
+                                                                            $kuota_paket = $get_data_paket['kuota_paket'];
+                                                                            $initPaket = $kecepatan . ", " . $kuota_paket . ", ". $nama_paket;
+                                                                        ?>
+                                                                            <?= $initPaket ?>
+                                                                        </h4>
+                                                                        <h4> <strong> STO : </strong> <?= $dta['sto'] ?></h4>
+                                                                        <?php
+                                                                        if ($dta['status_order'] == "NEW"){
+                                                                            echo "<span class='label label-primary'>PROCCESS</span>";
+                                                                        } else if ($dta['status_order'] == "PROCCESS"){
+                                                                            echo "<span class='label label-primary'>PROCCESS</span>";
+                                                                        } else if ($dta['status_order'] == "DONE"){
+                                                                            echo "<span class='label label-success'>DONE</span>";
+                                                                        } else if ($dta['status_order'] == "CANCEL"){
+                                                                            echo "<span class='label label-danger'>CANCEL</span>";
+                                                                        }
+                                                                        ?>
+                                                                        </div>
+                                                                        <div class="pull-right">
+                                                                            <h4><?= $dta['tanggal'] ?></h4>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <h4><strong>Pilih Mitra</strong></h4>
+                                                                    <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 250px; padding: 10px; min-height: 250px; background-color: cornsilk; outline: none;">
+                                                                    <?php
+                                                                        $mitra_pilih = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin = 'TL'");
+                                                                        foreach($mitra_pilih as $dta_mitra) { ?>
+                                                                        <div class="card-box m-b-10">
+                                                                            <div class="table-box opport-box">
+                                                                                <div class="table-detail">
+                                                                                    <img src="../assets/images/admin/<?= $dta_mitra['foto_admin'] ?>" alt="img" class="img-circle thumb-lg m-r-15">
+                                                                                </div>
+                                                                                <div class="table-detail">
+                                                                                    <div class="member-info">
+                                                                                        <h4 class="m-t-0"><b><?= $dta_mitra['nama_admin'] ?></b></h4>
+                                                                                        <p class="text-dark m-b-5"><b>STO: </b> <span class="text-muted">PNK-ANT</span></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="table-detail table-actions-bar">
+                                                                                    <a href="#" data-toggle="modal" data-target="#pilih<?= $i ?><?= $dta_mitra['id_admin'] ?>"  class="btn btn-sm btn-primary waves-effect waves-light">Pilih</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- MODAL HAPUS -->
+                                                                        <div class="modal fade" tabindex="-1" id="pilih<?= $i ?><?= $dta_mitra['id_admin'] ?>">
+                                                                            <div class="modal-dialog">
+                                                                            <div class="modal-content bg-primary">
+                                                                                <div class="modal-header">
+                                                                                <h4 class="modal-title" style="color: white;">Pilih Mitra</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                <p style="color: white;">Yakin Ingin Memilih <strong><?= $dta_mitra['nama_admin'] ?> </strong> ?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer justify-content-between">
+                                                                                <button type="button" class="btn btn-outline-light" style="background-color: silver;" data-dismiss="modal">Batal</button>
+                                                                                <a href="controller.php?kirim_order_mitra=true&id_admin=<?= $dta_mitra['id_admin'] ?>&id_order=<?= $dta['id_order'] ?>" type="button" class="btn btn-outline-light" style="background-color: white;">Kirim</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- /.modal-content -->
+                                                                            </div>
+                                                                            <!-- /.modal-dialog -->
+                                                                        </div>
+                                                                        <!-- /.modal -->
+                                                                    <?php } ?>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+                                                    <?php $i = $i + 1; } } ?>
                                                 </div>
                                             </div>
                                         </div>

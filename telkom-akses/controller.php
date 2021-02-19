@@ -46,7 +46,7 @@ if (isset($_POST['submit_admin'])) {
 }
 
 
-// UPDATE MASYARAKAT
+// UPDATE ADMIN
 if (isset($_POST['edit_admin'])) {
 	$id_admin = $_POST['id_admin'];
 	$nama_admin = $_POST['nama_admin'];
@@ -112,5 +112,32 @@ if (isset($_GET['hapus_admin'])) {
 		</script>
 	<?php }
 }
+
+
+// UPDATE ID MITRA
+if (isset($_GET['kirim_order_mitra'])) {
+	$id_admin = $_GET['id_admin'];
+	$id_order = $_GET['id_order'];
+	$status_order = "PROCCESS";
+
+		$query = "UPDATE tb_order SET status_order = '$status_order', mitra_id = '$id_admin' WHERE id_order = '$id_order'";
+		mysqli_query($conn, $query);
+	// UPDATE ID MITRA
+	if (mysqli_affected_rows($conn) > 0) {
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Membagikan Data berhasil.',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'index.php';
+				});
+			});
+		</script>
+	<?php }
+}
+
 
 ?>

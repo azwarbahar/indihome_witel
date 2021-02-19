@@ -235,7 +235,8 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order ORDER BY id_order DESC");
                                                             </div>
                                                             <div class="pull-right">
                                                                 <h4><?= $dta['tanggal'] ?></h4>
-                                                            </div></div>
+                                                            </div>
+                                                        </div>
                                                             <hr>
                                                             <h4> <strong> Nama Lengkap : </strong> <?= $dta['nama_lengkap'] ?></h4>
                                                             <h4> <strong> Email : </strong> <?= $dta['email'] ?></h4>
