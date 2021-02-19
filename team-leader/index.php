@@ -50,7 +50,7 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
+                        <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
                         <!-- Image Logo here -->
                         <!-- <a href="index.html" class="logo">
                             <i class="icon-c-logo"> <img src="../assets/images/logo_sm.png" height="42"/> </i>
@@ -75,11 +75,11 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
                                 </li>
                                 <li class="dropdown top-menu-item-xs">
-                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="../assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                                <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="../assets/images/admin/<?= $get_data_akun['foto_admin'] ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href=""><strong>Admin</strong></a></li>
+                                        <li><a href=""><strong><?= $get_data_akun['nama_admin'] ?></strong></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#detail-profile" ><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
@@ -90,6 +90,45 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                 </div>
             </div>
             <!-- Top Bar End -->
+
+            <!-- MODAL DETAIL -->
+            <div id="detail-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" style="width:40%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="custom-width-modalLabel"><strong>Detail</strong> </h4>
+                        </div>
+                        <div class="modal-body row" style="padding: 20px 50px 0 50px">
+                            <div class="col-md-4">
+                                <img src="../assets/images/admin/<?= $get_data_akun['foto_admin'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
+                            </div>
+                            <div class="col-md-8">
+                                <h4>Info Administrator</h4>
+                                <p><b>Nama: </b><span class="namaView"><?= $get_data_akun['nama_admin'] ?></span></p>
+                                <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $get_data_akun['jekel_admin'] ?></span></p>
+                                <p><b>Uesrname: </b><span class="usernameView"><?= $get_data_akun['username_admin'] ?></span></p>
+                                <?php
+                                if ($get_data_akun['status_admin']== "Aktif"){
+                                ?>
+                                    <p><b>Status: </b><span class="label label-success"><?= $get_data_akun['status_admin'] ?></span></p>
+                                <?php
+                                } else {
+                                ?>
+                                    <p><b>Status: </b><span class="label label-danger"><?= $get_data_akun['status_admin'] ?></span></p>
+                                <?php
+                                }
+                                ?>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
 
             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-sm">
@@ -123,11 +162,11 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                             </li>
 
                             <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
-                                <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
                             </li>
 
                             <li class="has_sub">
@@ -156,27 +195,34 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                                 <h4 class="page-title">Beranda</h4><br>
                                 <a href="" class="list-group-item active">
                                     <h4 class="list-group-item-heading">Welcome,</h4>
-                                    <p class="list-group-item-text">Selamat Datang Kembali <b>Admin</b>  </p>
+                                    <p class="list-group-item-text">Selamat Datang Kembali <b><?= $get_data_akun['nama_admin'] ?></b>  </p>
                                 </a>
                             </div>
                         </div> <br>
 
                         <div class="row">
-                            <div class="col-lg-4 col-sm-6">
+                            <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-3 bg-white">
                                     <i class="md md-assignment text-primary"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>
                                     <div class="text-muted m-t-5">Data Orderan</div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-6">
+                            <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-3 bg-white">
                                     <i class="md md-assignment-turned-in text-success"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>
                                     <div class="text-muted m-t-5">Data SC</div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-6">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="widget-panel widget-style-3 bg-white">
+                                    <i class="md md-assignment-late text-danger"></i>
+                                    <h2 class="m-0 text-dark counter font-600">100</h2>
+                                    <div class="text-muted m-t-5">SC Tolak</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-3 bg-white">
                                     <i class="md md-account-box text-warning"></i>
                                     <h2 class="m-0 text-dark counter font-600">100</h2>

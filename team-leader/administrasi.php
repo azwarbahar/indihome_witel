@@ -3,6 +3,7 @@ require('../koneksi.php');
 if (!isset($_SESSION['login_TL'])) {
   header("location: ../login.php");
 }
+
 $get_id_session = $_SESSION['get_id'];
 $query_header_akun = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$get_id_session'");
 $get_data_akun = mysqli_fetch_assoc($query_header_akun);
@@ -22,6 +23,8 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
 		<link rel="shortcut icon" href="../assets/images/favicon-indihome.png">
 
         <title>TELKOM AKSES WITEL BALAIKOTA MAKASSAR</title>
+
+        <link href="../assets/plugins/smoothproducts/css/smoothproducts.css" rel="stylesheet" type="text/css" />
 
         <!-- Plugins css-->
         <link href="../assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
@@ -71,7 +74,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Telkom Akses</span></a>
+                        <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
                         <!-- Image Logo here -->
                         <!-- <a href="index.html" class="logo">
                             <i class="icon-c-logo"> <img src="../assets/images/logo_sm.png" height="42"/> </i>
@@ -96,11 +99,11 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
                                 </li>
                                 <li class="dropdown top-menu-item-xs">
-                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="../assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                                <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="../assets/images/admin/<?= $get_data_akun['foto_admin'] ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href=""><strong>Admin</strong></a></li>
+                                        <li><a href=""><strong><?= $get_data_akun['nama_admin'] ?></strong></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#detail-profile" ><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
@@ -111,6 +114,45 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                 </div>
             </div>
             <!-- Top Bar End -->
+
+            <!-- MODAL DETAIL -->
+            <div id="detail-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" style="width:40%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="custom-width-modalLabel"><strong>Detail</strong> </h4>
+                        </div>
+                        <div class="modal-body row" style="padding: 20px 50px 0 50px">
+                            <div class="col-md-4">
+                                <img src="../assets/images/admin/<?= $get_data_akun['foto_admin'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
+                            </div>
+                            <div class="col-md-8">
+                                <h4>Info Administrator</h4>
+                                <p><b>Nama: </b><span class="namaView"><?= $get_data_akun['nama_admin'] ?></span></p>
+                                <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $get_data_akun['jekel_admin'] ?></span></p>
+                                <p><b>Uesrname: </b><span class="usernameView"><?= $get_data_akun['username_admin'] ?></span></p>
+                                <?php
+                                if ($get_data_akun['status_admin']== "Aktif"){
+                                ?>
+                                    <p><b>Status: </b><span class="label label-success"><?= $get_data_akun['status_admin'] ?></span></p>
+                                <?php
+                                } else {
+                                ?>
+                                    <p><b>Status: </b><span class="label label-danger"><?= $get_data_akun['status_admin'] ?></span></p>
+                                <?php
+                                }
+                                ?>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
 
             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-sm">
@@ -255,7 +297,11 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                         <?php $i = 1; foreach($admin as $dta) { ?>
                                         <tr>
                                             <td style="text-align: center;"><?= $i ?></td>
-                                            <td style="text-align: center;"><img  src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt="" border=3 height=40 width=40></img></td>
+                                            <td style="text-align: center;">
+                                                <div class="sp-wrap">
+                                                    <a href="../assets/images/admin/<?php echo $dta['foto_admin'] ?>"><img src="../assets/images/admin/<?php echo $dta['foto_admin'] ?>" alt=""  border=3 height=40 width=40></a>
+                                                </div>
+                                            </td>
                                             <td><?= $dta['nama_admin'] ?></td>
                                             <td style="text-align: center;">
                                             <?php
@@ -472,6 +518,14 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
 
         <script src="../assets/js/jquery.core.js"></script>
         <script src="../assets/js/jquery.app.js"></script>
+
+<script src="../assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
+<script type="text/javascript">
+// wait for images to load
+$(window).load(function() {
+$('.sp-wrap').smoothproducts();
+});
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
