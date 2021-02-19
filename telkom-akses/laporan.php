@@ -1,6 +1,6 @@
 <?php
 require('../koneksi.php');
-$order = mysqli_query($conn, "SELECT * FROM tb_order");
+$order = mysqli_query($conn, "SELECT * FROM tb_order ORDER BY id_order DESC");
 ?>
 <!DOCTYPE html>
 <html>
@@ -169,29 +169,6 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order");
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
-                            		<!-- sample modal content -->
-                                    <div id="share-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog" style="width:55%;">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h3 class="modal-title" id="custom-width-modalLabel"><strong>Data Order</strong></h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h4>Text in a modal</h4>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                                                    <hr>
-                                                    <h4>Overflowing text to show scroll behavior</h4>
-                                                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-
                                     <h4 class="m-t-0 header-title"><b>Data Laporan</b></h4>
                                     <br>
                                     <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
@@ -227,9 +204,82 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order");
                                                 }
                                                 ?>
                                                 <td style="text-align:center">
-                                                <button class="btn btn-icon waves-effect waves-light btn-primary" data-toggle="modal" data-target="#share-modal"> <i class="fa fa-share"></i> </button>
+                                                <button class="btn btn-icon waves-effect waves-light btn-primary" data-toggle="modal" data-target="#detail-modal<?= $i ?>"> <i class="fa fa-eye"></i> Detail</button>
                                                 </td>
                                             </tr>
+
+                                            <!-- MODEL DETAIL -->
+                                            <div id="detail-modal<?= $i ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:55%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h3 class="modal-title" id="custom-width-modalLabel"><strong>Detail Order</strong></h3>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <div class="clearfix">
+                                                            <div class="pull-left">
+                                                            <h3 style="color: #850A05 ;" > <strong><?= $dta['myir'] ?></strong></h3>
+                                                            <h4> <strong> STO : </strong> <?= $dta['sto'] ?></h4>
+                                                            <?php
+                                                            if ($dta['status_order'] == "NEW"){
+                                                                echo "<span class='label label-primary'>PROCCESS</span>";
+                                                            } else if ($dta['status_order'] == "PROCCESS"){
+                                                                echo "<span class='label label-primary'>PROCCESS</span>";
+                                                            } else if ($dta['status_order'] == "DONE"){
+                                                                echo "<span class='label label-success'>DONE</span>";
+                                                            } else if ($dta['status_order'] == "CANCEL"){
+                                                                echo "<span class='label label-danger'>CANCEL</span>";
+                                                            }
+                                                            ?>
+                                                            </div>
+                                                            <div class="pull-right">
+                                                                <h4><?= $dta['tanggal'] ?></h4>
+                                                            </div></div>
+                                                            <hr>
+                                                            <h4> <strong> Nama Lengkap : </strong> <?= $dta['nama_lengkap'] ?></h4>
+                                                            <h4> <strong> Email : </strong> <?= $dta['email'] ?></h4>
+                                                            <h4> <strong> Telpon : </strong> <?= $dta['telpon'] ?></h4>
+                                                            <h4> <strong> Alamat : </strong> <?= $dta['alamat'] ?></h4>
+                                                            <hr>
+                                                            <h4>Paket <br>
+                                                            <?php
+                                                                $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta[paket_id]'");
+                                                                $get_data_paket = mysqli_fetch_assoc($query_paket);
+                                                                $nama_paket = $get_data_paket['nama_paket'];
+                                                                $kecepatan = $get_data_paket['kecepatan_paket'];
+                                                                $kuota_paket = $get_data_paket['kuota_paket'];
+                                                                $initPaket = $kecepatan . ", " . $kuota_paket . ", ". $nama_paket;
+                                                            ?>
+                                                                <strong><?= $initPaket ?></strong>
+                                                            </h4>
+                                                            <?php
+                                                                $id_mitra = $dta['mitra_id'];
+                                                                if (!$id_mitra == ""){
+                                                                    $query_mitra = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$dta[mitra_id]' AND role_admin = 'TL'");
+                                                                    $get_data_mitra = mysqli_fetch_assoc($query_mitra);
+                                                                    echo "<hr>
+                                                                        <h4 style='color: #850A05 ;' > <strong> Mitra</strong></h4>
+                                                                        <div class='contact-card'>
+                                                                            <a class='pull-left' href='#'>
+                                                                                <img class='img-circle' src='../assets/images/admin/$get_data_mitra[foto_admin]' alt=''>
+                                                                            </a>
+                                                                            <div class='member-info'>
+                                                                                <h4 class='m-t-0 m-b-5 header-title'><b>$get_data_mitra[nama_admin]</b></h4>
+                                                                                <p class='text-muted'>$get_data_mitra[jekel_admin]</b> </p>
+                                                                                <p class='text-dark'><i class='md md-business m-r-10'></i><small>$dta[sto]</b></small></p>
+                                                                            </div>
+                                                                        </div>";
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
                                         <?php $i = $i + 1; } ?>
                                         </tbody>
                                     </table>
@@ -247,119 +297,6 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order");
             <!-- ============================================================== -->
             <!-- End Right content here -->
             <!-- ============================================================== -->
-
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-1.jpg" alt="">
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-2.jpg" alt="">
-                                </div>
-                                <span class="name">Tomaslau</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-3.jpg" alt="">
-                                </div>
-                                <span class="name">Stillnotdavid</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-4.jpg" alt="">
-                                </div>
-                                <span class="name">Kurafire</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-5.jpg" alt="">
-                                </div>
-                                <span class="name">Shahedk</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-6.jpg" alt="">
-                                </div>
-                                <span class="name">Adhamdannaway</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-7.jpg" alt="">
-                                </div>
-                                <span class="name">Ok</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-8.jpg" alt="">
-                                </div>
-                                <span class="name">Arashasghari</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-9.jpg" alt="">
-                                </div>
-                                <span class="name">Joshaustin</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="../assets/images/users/avatar-10.jpg" alt="">
-                                </div>
-                                <span class="name">Sortino</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /Right-bar -->
-
-
         </div>
         <!-- END wrapper -->
 
