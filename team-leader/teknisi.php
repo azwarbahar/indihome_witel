@@ -71,12 +71,12 @@ if (!isset($_SESSION['login_TL'])) {
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                    <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
+                    <!-- <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a> -->
                         <!-- Image Logo here -->
-                        <!-- <a href="index.html" class="logo">
-                            <i class="icon-c-logo"> <img src="../assets/images/logo_sm.png" height="42"/> </i>
-                            <span><img src="../assets/images/logo_light.png" height="20"/></span>
-                        </a> -->
+                        <a href="index.php" class="logo">
+                            <i class="icon-c-logo"> <img src="../assets/images/logo_bg_white.png" height="42"/> </i>
+                            <span><i class="icon-magnet icon-c-logo"></i>Team Leader</span>
+                        </a>
                     </div>
                 </div>
 
@@ -183,15 +183,23 @@ if (!isset($_SESSION['login_TL'])) {
                             </li>
 
                             <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
-                            </li>
-
-                            <li class="has_sub">
                                 <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
-                                <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-files"></i><span>Laporan </span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li class="has_sub">
+                                        <a href="laporan.php"><span>Data Order</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="data-sc.php"><span>Data SC</span></a>
+                                    </li>
+                                </ul>
                             </li>
 
                         </ul>
@@ -434,6 +442,22 @@ if (!isset($_SESSION['login_TL'])) {
                                                                 <?php
                                                                     }
                                                                     ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">Status Akun</label>
+                                                                <div class="col-sm-9">
+                                                                    <select name="status_teknisi" id="status_teknisi" class="form-control">
+                                                                    <?php
+                                                                    if ($dta['status_teknisi']=="Aktif"){
+                                                                        echo "<option selected='selected' value='Aktif'>Aktif</option>
+                                                                        <option value='Suspend'>Suspend</option>";
+                                                                    } else{
+                                                                        echo "<option value='Aktif'>Aktif</option>
+                                                                        <option selected='selected' value='Suspend'>Suspend</option>";
+                                                                    }
+                                                                    ?>
+                                                                    </select>
                                                                 </div>
                                                             </div>
 

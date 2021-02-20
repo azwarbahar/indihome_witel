@@ -162,6 +162,7 @@ if (isset($_POST['edit_teknisi'])) {
 	$telpon_teknisi = $_POST['telpon_teknisi'];
 	$jenis_kelamin_teknisi = $_POST['jenis_kelamin_teknisi'];
 	$username_teknisi = $_POST['username_teknisi'];
+	$status_teknisi = $_POST['status_teknisi'];
 
     // SET FOTO
 	if ($_FILES['foto_teknisi']['name'] != '') {
@@ -180,7 +181,8 @@ if (isset($_POST['edit_teknisi'])) {
 		$query = "UPDATE tb_teknisi SET nama_teknisi = '$nama_teknisi',
 											telpon_teknisi = '$telpon_teknisi',
 											jekel_teknisi = '$jenis_kelamin_teknisi',
-											foto_teknisi = '$nama_foto' WHERE id_teknisi = '$id_teknisi'";
+											foto_teknisi = '$nama_foto',
+											status_teknisi = '$status_teknisi' WHERE id_teknisi = '$id_teknisi'";
 		mysqli_query($conn, $query);
 	// EDIT PARTAI
 	if (mysqli_affected_rows($conn) > 0) {
@@ -225,6 +227,29 @@ if (isset($_GET['hapus_teknisi'])) {
 	<?php }
 }
 
+// UPDATE ID TEKNISI
+if (isset($_GET['kirim_order_teknisi'])) {
+	$id_teknisi = $_GET['id_teknisi'];
+	$id_order = $_GET['id_order'];
+
+		$query = "UPDATE tb_order SET teknisi_id = '$id_teknisi' WHERE id_order = '$id_order'";
+		mysqli_query($conn, $query);
+	// UPDATE ID MITRA
+	if (mysqli_affected_rows($conn) > 0) {
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Membagikan Data berhasil.',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'index.php';
+				});
+			});
+		</script>
+	<?php }
+}
 
 
 ?>

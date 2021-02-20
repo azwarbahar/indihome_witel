@@ -8,7 +8,7 @@ if (!isset($_SESSION['login_TL'])) {
 $get_id_session = $_SESSION['get_id'];
 $query_header_akun = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$get_id_session'");
 $get_data_akun = mysqli_fetch_assoc($query_header_akun);
-$order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data_akun[id_admin]' ORDER BY id_order DESC");
+$sc = mysqli_query($conn, "SELECT * FROM tb_sc WHERE mitra_id = '$get_data_akun[id_admin]' ORDER BY id_sc DESC");
 ?>
 <!DOCTYPE html>
 <html>
@@ -211,7 +211,7 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data
 						<!-- Page-Title -->
 						<div class="row">
 							<div class="col-sm-12">
-                                <h4 class="page-title">Data Order</h4><br>
+                                <h4 class="page-title">Data SC</h4><br>
                                 <ol class="breadcrumb">
 									<li>
 										<a href="index.php">Beranda</a>
@@ -220,7 +220,7 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data
 										<a href="#">Laporan</a>
 									</li>
 									<li class="active">
-										Data Order
+										Data SC
 									</li>
 								</ol>
                             </div>
@@ -228,38 +228,38 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
-                                    <h4 class="m-t-0 header-title"><b>Data Order</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Data SC</b></h4>
                                     <br>
                                     <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
+                                            <th style="text-align:center">Kode</th>
                                             <th style="text-align:center">MYIR</th>
-                                            <th>Nama</th>
+                                            <th>Teknisi</th>
                                             <th>Telpon</th>
-                                            <th>STO</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $i = 1; foreach($order as $dta) { ?>
+                                        <?php $i = 1; foreach($sc as $dta) { ?>
                                             <tr>
-                                                <td style="text-align:center"><?= $dta['myir'] ?></td>
-                                                <td><?= $dta['nama_lengkap'] ?></td>
-                                                <td><?= $dta['telpon'] ?></td>
-                                                <td><?= $dta['sto'] ?></td>
-                                                <td><?= $dta['tanggal'] ?></td>
+                                                <td style="text-align:center"><?= $dta['kode_sc'] ?></td>
+                                                <td style="text-align:center"> <a href="#"> <strong><?= $dta['myir_sc'] ?></strong></a></td>
                                                 <?php
-                                                if ($dta['status_order'] == "NEW"){
-                                                    echo "<td style='text-align:center'><span class='label label-primary'>PROCCESS</span></td>";
-                                                } else if ($dta['status_order'] == "PROCCESS"){
-                                                    echo "<td style='text-align:center'><span class='label label-primary'>PROCCESS</span></td>";
-                                                } else if ($dta['status_order'] == "DONE"){
-                                                    echo "<td style='text-align:center'><span class='label label-success'>DONE</span></td>";
-                                                } else if ($dta['status_order'] == "CANCEL"){
-                                                    echo "<td style='text-align:center'><span class='label label-danger'>CANCEL</span></td>";
+                                                    $teknisi = mysqli_query($conn, "SELECT * FROM tb_teknisi WHERE id_teknisi = '$dta[teknisi_id]'");
+                                                    $get_teknisi = mysqli_fetch_assoc($teknisi);
+                                                ?>
+                                                <td style="text-align:center"><img src="../assets/images/teknisi/<?= $get_teknisi['foto_teknisi'] ?>" alt="contact-img" title="contact-img" class="img-circle thumb-sm"></td>
+                                                <td><?= $dta['telpon_sc'] ?></td>
+                                                <td><?= $dta['tanggal_sc'] ?></td>
+                                                <?php
+                                                if ($dta['status_sc'] == "DONE"){
+                                                    echo "<td style='text-align:center'><span class='label label-success'>Selesai</span></td>";
+                                                } else if ($dta['status_sc'] == "CANCEL"){
+                                                    echo "<td style='text-align:center'><span class='label label-danger'>Tolak</span></td>";
                                                 }
                                                 ?>
                                                 <td style="text-align:center">
@@ -273,38 +273,44 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h3 class="modal-title" id="custom-width-modalLabel"><strong>Detail Order</strong></h3>
+                                                            <h3 class="modal-title" id="custom-width-modalLabel"><strong>Detail SC</strong></h3>
                                                         </div>
                                                         <div class="modal-body">
                                                         <div class="clearfix">
                                                             <div class="pull-left">
-                                                            <h3 style="color: #850A05 ;" > <strong><?= $dta['myir'] ?></strong></h3>
-                                                            <h4> <strong> STO : </strong> <?= $dta['sto'] ?></h4>
+                                                            <h3 style="color: #850A05 ;" > Kode SC : <strong><?= $dta['kode_sc'] ?></strong></h3>
+                                                            <h4> <strong> MYIR : </strong> <?= $dta['myir_sc'] ?></h4>
+                                                            <h4> <strong> STO : </strong> <?= $dta['sto_sc'] ?></h4>
                                                             <?php
-                                                            if ($dta['status_order'] == "NEW"){
-                                                                echo "<span class='label label-primary'>PROCCESS</span>";
-                                                            } else if ($dta['status_order'] == "PROCCESS"){
-                                                                echo "<span class='label label-primary'>PROCCESS</span>";
-                                                            } else if ($dta['status_order'] == "DONE"){
-                                                                echo "<span class='label label-success'>DONE</span>";
-                                                            } else if ($dta['status_order'] == "CANCEL"){
-                                                                echo "<span class='label label-danger'>CANCEL</span>";
+                                                            if ($dta['status_sc'] == "DONE"){
+                                                                echo "<span class='label label-success'>Selesai</span>";
+                                                            } else if ($dta['status_sc'] == "CANCEL"){
+                                                                echo "<span class='label label-danger'>Tolak</span>";
                                                             }
                                                             ?>
                                                             </div>
                                                             <div class="pull-right">
-                                                                <h4><?= $dta['tanggal'] ?></h4>
+                                                                <h4><?= $dta['tanggal_sc'] ?></h4>
                                                             </div>
                                                         </div>
+                                                            <?php
+                                                            if ($dta['status_sc'] == "CANCEL"){
+                                                                echo "<hr>
+                                                                    <div class='alert alert-danger'>
+                                                                        <strong>Keterangan : </strong> $dta[keterangan_sc]
+                                                                    </div>";
+                                                            }
+                                                            ?>
                                                             <hr>
-                                                            <h4> <strong> Nama Lengkap : </strong> <?= $dta['nama_lengkap'] ?></h4>
-                                                            <h4> <strong> Email : </strong> <?= $dta['email'] ?></h4>
-                                                            <h4> <strong> Telpon : </strong> <?= $dta['telpon'] ?></h4>
-                                                            <h4> <strong> Alamat : </strong> <?= $dta['alamat'] ?></h4>
+                                                            <h4> <strong> Nama Lengkap : </strong> <?= $dta['nama_sc'] ?></h4>
+                                                            <h4> <strong> Telpon : </strong> <?= $dta['telpon_sc'] ?></h4>
+                                                            <h4> <strong> Alamat : </strong> <?= $dta['alamat_sc'] ?></h4>
                                                             <hr>
                                                             <h4>Paket <br>
                                                             <?php
-                                                                $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta[paket_id]'");
+                                                                $get_order_model = mysqli_query($conn, "SELECT * FROM tb_order WHERE id_order = '$dta[order_id]'");
+                                                                $get_order_model_data = mysqli_fetch_assoc($get_order_model);
+                                                                $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$get_order_model_data[paket_id]'");
                                                                 $get_data_paket = mysqli_fetch_assoc($query_paket);
                                                                 $nama_paket = $get_data_paket['nama_paket'];
                                                                 $kecepatan = $get_data_paket['kecepatan_paket'];
@@ -327,7 +333,7 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order WHERE mitra_id = '$get_data
                                                                             <div class='member-info'>
                                                                                 <h4 class='m-t-0 m-b-5 header-title'><b>$get_data_teknisi[nama_teknisi]</b></h4>
                                                                                 <p class='text-muted'>$get_data_teknisi[jekel_teknisi]</b> </p>
-                                                                                <p class='text-dark'><i class='md md-business m-r-10'></i><small>$dta[sto]</b></small></p>
+                                                                                <p class='text-dark'><i class='md md-business m-r-10'></i><small>$dta[sto_sc]</b></small></p>
                                                                             </div>
                                                                         </div>";
                                                                 }

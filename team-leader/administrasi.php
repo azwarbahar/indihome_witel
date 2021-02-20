@@ -74,12 +74,12 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a>
+                    <!-- <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Team Leader</span></a> -->
                         <!-- Image Logo here -->
-                        <!-- <a href="index.html" class="logo">
-                            <i class="icon-c-logo"> <img src="../assets/images/logo_sm.png" height="42"/> </i>
-                            <span><img src="../assets/images/logo_light.png" height="20"/></span>
-                        </a> -->
+                        <a href="index.php" class="logo">
+                            <i class="icon-c-logo"> <img src="../assets/images/logo_bg_white.png" height="42"/> </i>
+                            <span><i class="icon-magnet icon-c-logo"></i>Team Leader</span>
+                        </a>
                     </div>
                 </div>
 
@@ -184,15 +184,23 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                             </li>
 
                             <li class="has_sub">
-                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
-                            </li>
-
-                            <li class="has_sub">
                                 <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 
                             <li class="has_sub">
-                                <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
+                                <a href="administrasi.php" class="waves-effect"><i class="ti-user"></i> <span> Mitra </span></a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-files"></i><span>Laporan </span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li class="has_sub">
+                                        <a href="laporan.php"><span>Data Order</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="data-sc.php"><span>Data SC</span></a>
+                                    </li>
+                                </ul>
                             </li>
 
                         </ul>
