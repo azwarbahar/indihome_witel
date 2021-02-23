@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mitra_id = null;
     $keterangan = "";
 
-    $query = "INSERT INTO tb_order values('','$myir',
+    $query = "INSERT INTO tb_order values(null,'$myir',
                                             '$nama_lengkap',
                                             '$email',
                                             '$telpon',
