@@ -218,62 +218,66 @@ if (!isset($_SESSION['login_TA'])) {
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
 
-                                    <!-- MODAL TABAH MITRA -->
+                                    <!-- MODAL TABAH ADMIN -->
                                     <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                     <h4 class="modal-title">Tambah Mitra</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label for="field-3" class="control-label">Nama Mitra</label>
-                                                                <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                    <form method="POST" action="controller.php" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_admin" id="nama_admin">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="field-4" class="control-label">City</label>
-                                                                <input type="text" class="form-control" id="field-4" placeholder="Boston"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Foto</label>
+                                                            <div class="col-sm-9 bootstrap-filestyle">
+                                                                <input type="file" class="filestyle" data-placeholder="Belum ada foto" name="foto_admin" id="foto_admin" required="">
+                                                                <div class="row text-info" id="viewProgress" hidden="">
+                                                                    <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="field-5" class="control-label">Country</label>
-                                                                <input type="text" class="form-control" id="field-5" placeholder="United States"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                            <div class="col-sm-9">
+                                                                <select name="jenis_kelamin_admin" id="jenis_kelamin_admin" class="form-control">
+                                                                <option value="Laki - laki">Laki - laki</option>
+                                                                <option value="Perempuan">Perempuan</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="field-6" class="control-label">Zip</label>
-                                                                <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">Username dan Password</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group no-margin">
-                                                                <label for="field-7" class="control-label">Personal Info</label>
-                                                                <textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">STO</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" disabled class="nb-edt form-control"value="PNK-ANT">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
-                                                    <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button> 
+                                                            <button type="submit" name="submit_mitra" class="btn btn-default waves-effect">Simpan</button> 
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- /.modal -->
+                                    </div>
+                                    <!-- AKHIR MODAL TABAH ADMIN -->
 
                                     <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4><br>
-                                    <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
+                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
@@ -282,8 +286,8 @@ if (!isset($_SESSION['login_TA'])) {
                                             <th>Nama</th>
                                             <th>STO</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Username</th>
                                             <th>Status</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -298,9 +302,145 @@ if (!isset($_SESSION['login_TA'])) {
                                                 <td><?= $dta['nama_admin'] ?></td>
                                                 <td>PNK-ANT</td>
                                                 <td><?= $dta['jekel_admin'] ?></td>
-                                                <td><?= $dta['username_admin'] ?></td>
                                                 <td style="text-align: center;"><span class="label label-success"><?= $dta['status_admin'] ?></span></td>
+                                                <td style="text-align: center;">
+                                                    <div class="text-center">
+                                                        <a href="#" type="button" data-toggle="modal" data-target="#detail<?= $dta['id_admin'] ?>" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                        <a href="#" type="button" data-toggle="modal" data-target="#edit<?= $dta['id_admin'] ?>"  class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a>
+                                                        <a href="#" type="button" data-toggle="modal" data-target="#hapus<?= $dta['id_admin'] ?>" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </td>
                                             </tr>
+
+                                            <!-- MODAL DETAIL -->
+                                            <div id="detail<?= $dta['id_admin'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:40%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title" id="custom-width-modalLabel"><strong>Detail</strong> </h4>
+                                                        </div>
+                                                        <div class="modal-body row" style="padding: 20px 50px 0 50px">
+                                                            <div class="col-md-4">
+                                                                <img src="../assets/images/admin/<?= $dta['foto_admin'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h4>Info Mitra</h4>
+                                                                <p><b>Nama: </b><span class="namaView"><?= $dta['nama_admin'] ?></span></p>
+                                                                <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $dta['jekel_admin'] ?></span></p>
+                                                                <p><b>Uesrname: </b><span class="usernameView"><?= $dta['username_admin'] ?></span></p>
+                                                                <?php
+                                                                if ($dta['status_admin']== "Aktif"){
+                                                                ?>
+                                                                    <p><b>Status: </b><span class="label label-success"><?= $dta['status_admin'] ?></span></p>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <p><b>Status: </b><span class="label label-danger"><?= $dta['status_admin'] ?></span></p>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <hr>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <!-- MODAL EDIT ADMIN -->
+                                            <div id="edit<?= $dta['id_admin'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title">Edit Mitra</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form method="POST" action="controller.php" enctype="multipart/form-data">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" value="<?= $dta['nama_admin'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Nama Lengkap" name="nama_admin" id="nama_admin">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label">Foto</label>
+                                                                    <div class="col-sm-9 bootstrap-filestyle">
+                                                                        <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_admin'] ?>" name="foto_admin" id="foto_admin<?= $dta['id_admin'] ?>">
+                                                                        <div class="row text-info" id="viewProgress" hidden="">
+                                                                            <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                                    <div class="col-sm-9">
+                                                                        <select name="jenis_kelamin_admin" id="jenis_kelamin_admin" class="form-control">
+                                                                        <?php
+                                                                        if ($dta['jekel_admin']=="Laki - laki"){
+                                                                            echo "<option selected='selected' value='Laki - laki'>Laki - laki</option>
+                                                                            <option value='Perempuan'>Perempuan</option>";
+                                                                        } else{
+                                                                            echo "<option value='Laki - laki'>Laki - laki</option>
+                                                                            <option selected='selected' value='Perempuan'>Perempuan</option>";
+                                                                        }
+                                                                        ?>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label">Username dan Password</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" value="<?= $dta['username_admin'] ?>" class="nb-edt form-control" required="" autocomplete="off" placeholder="Username dan Password" name="username_admin" id="username_admin">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label">STO</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" disabled class="nb-edt form-control"value="PNK-ANT">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                <input type="hidden" name="foto_now" value="<?= $dta['foto_admin'] ?>" >
+                                                                <input type="hidden" name="id_admin" value="<?= $dta['id_admin'] ?>" >
+                                                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
+                                                                    <button type="submit" name="edit_mitra" class="btn btn-default waves-effect">Simpan</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- AKHIR MODAL EDIT ADMIN -->
+
+                                            <!-- MODAL HAPUS -->
+                                            <div class="modal fade" tabindex="-1" id="hapus<?= $dta['id_admin'] ?>">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content bg-danger">
+                                                    <div class="modal-header">
+                                                    <h4 class="modal-title" style="color: white;">Hapus Akun Mitra</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <p style="color: white;">Yakin Ingin Menghapus Akun Mitra ?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-outline-dark" style="background-color: silver;" data-dismiss="modal">Batal</button>
+                                                    <a href="controller.php?hapus_mitra=true&id_admin=<?= $dta['id_admin'] ?>" type="button" class="btn btn-outline-dark" style="background-color: white;">Hapus</a>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
+
                                         <?php $i = $i + 1; } ?>
                                         </tbody>
                                     </table>
@@ -340,6 +480,7 @@ if (!isset($_SESSION['login_TA'])) {
 
         <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="../assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="../assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
 
         <script src="../assets/plugins/datatables/dataTables.buttons.min.js"></script>
         <script src="../assets/plugins/datatables/buttons.bootstrap.min.js"></script>

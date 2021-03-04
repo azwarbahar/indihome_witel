@@ -290,13 +290,14 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                     <!-- AKHIR MODAL TABAH ADMIN -->
 
                                     <h4 class="m-t-0 header-title"><b>Data Mitra</b></h4>
-                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
+                                    <!-- <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button> -->
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>Nama Lengkap</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -311,6 +312,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                                 </div>
                                             </td>
                                             <td><?= $dta['nama_admin'] ?></td>
+                                            <td><?= $dta['jekel_admin'] ?></td>
                                             <td style="text-align: center;">
                                             <?php
                                                             if ($dta['status_admin']== "Aktif"){
@@ -327,8 +329,8 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                             <td style="text-align: center;">
                                                 <div class="text-center">
                                                     <a href="#" type="button" data-toggle="modal" data-target="#detail<?= $dta['id_admin'] ?>" class="btn btn-info btn-sm waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                                    <a href="#" type="button" data-toggle="modal" data-target="#edit<?= $dta['id_admin'] ?>"  class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" type="button" data-toggle="modal" data-target="#hapus<?= $dta['id_admin'] ?>" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a>
+                                                    <!-- <a href="#" type="button" data-toggle="modal" data-target="#edit<?= $dta['id_admin'] ?>"  class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-edit"></i></a> -->
+                                                    <!-- <a href="#" type="button" data-toggle="modal" data-target="#hapus<?= $dta['id_admin'] ?>" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-danger" ><i class="fa fa-trash"></i></a> -->
                                                 </div>
                                             </td>
                                         </tr>
