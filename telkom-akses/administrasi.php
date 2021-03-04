@@ -281,7 +281,7 @@ if (!isset($_SESSION['login_TA'])) {
                                     <!-- AKHIR MODAL TABAH ADMIN -->
 
                                     <h4 class="m-t-0 header-title"><b>Data Administrator</b></h4>
-                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Mitra</button>
+                                    <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light m-t-10 m-b-20" data-toggle="modal" data-target="#con-close-modal"><i class="fa fa-plus-circle"></i> &nbsp;Tambah Administrator</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>

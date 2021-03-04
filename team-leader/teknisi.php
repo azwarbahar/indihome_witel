@@ -358,7 +358,7 @@ if (!isset($_SESSION['login_TL'])) {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h4>Info Administrator</h4>
+                                                            <h4>Info Teknisi</h4>
                                                             <p><b>Nama: </b><span class="namaView"><?= $dta['nama_teknisi'] ?></span></p>
                                                             <p><b>Telpon: </b><span class="usernameView"><?= $dta['telpon_teknisi'] ?></span></p>
                                                             <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $dta['jekel_teknisi'] ?></span></p>
@@ -389,7 +389,7 @@ if (!isset($_SESSION['login_TL'])) {
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <h4 class="modal-title">Edit Administrator</h4>
+                                                        <h4 class="modal-title">Edit Teknisi</h4>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form method="POST" action="controller.php" enctype="multipart/form-data">

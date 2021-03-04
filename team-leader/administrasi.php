@@ -348,7 +348,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                                                             <img src="../assets/images/admin/<?= $dta['foto_admin'] ?>" alt="user-img" class="img-circle" style="border: 1px solid; height: 100px;">
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h4>Info Administrator</h4>
+                                                            <h4>Info Mitra</h4>
                                                             <p><b>Nama: </b><span class="namaView"><?= $dta['nama_admin'] ?></span></p>
                                                             <p><b>Jenis Kelamin: </b><span class="usernameView"><?= $dta['jekel_admin'] ?></span></p>
                                                             <p><b>Uesrname: </b><span class="usernameView"><?= $dta['username_admin'] ?></span></p>

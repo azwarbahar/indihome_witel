@@ -91,7 +91,7 @@ if (!isset($_SESSION['login_TA'])) {
                                     <ul class="dropdown-menu">
                                         <li><a href=""><strong><?= $get_data_akun['nama_admin'] ?></strong></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#detail-profile" ><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
