@@ -3,7 +3,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $myir = $_POST['myir'];
+    $myir = "MYIR-".$_POST['myir'];
     $nama_lengkap= $_POST['nama_lengkap'];
     $email = $_POST['email'];
     $telpon = $_POST['telpon'];
