@@ -369,7 +369,7 @@ if (!isset($_SESSION['login_TA'])) {
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">Foto</label>
                                                                 <div class="col-sm-9 bootstrap-filestyle">
-                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_admin'] ?>" name="foto_admin" id="foto_admin<?= $dta['id_admin'] ?>" required="">
+                                                                    <input type="file" class="filestyle" data-placeholder="<?= $dta['foto_admin'] ?>" name="foto_admin" id="foto_admin<?= $dta['id_admin'] ?>">
                                                                     <div class="row text-info" id="viewProgress" hidden="">
                                                                         <span class="col-sm-5">Sedang mengapload foto... <b><i id="progress">0%</i></b></span>
                                                                     </div>
