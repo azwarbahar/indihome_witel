@@ -348,6 +348,23 @@ $get_data_akun = mysqli_fetch_assoc($query_header_akun);
                                                                                 <h4><?= $dta_order_data['tanggal'] ?></h4>
                                                                             </div>
                                                                         </div>
+                                                            <hr>
+                                                            <h4> <strong> Nama Lengkap : </strong> <?= $dta_order_data['nama_lengkap'] ?></h4>
+                                                            <h4> <strong> Email : </strong> <?= $dta_order_data['email'] ?></h4>
+                                                            <h4> <strong> Telpon : </strong> <?= $dta_order_data['telpon'] ?></h4>
+                                                            <h4> <strong> Alamat : </strong> <?= $dta_order_data['alamat'] ?></h4>
+                                                            <hr>
+                                                            <h4>Paket <br>
+                                                            <?php
+                                                                $query_paket = mysqli_query($conn, "SELECT * FROM tb_paket WHERE id_paket = '$dta_order_data[paket_id]'");
+                                                                $get_data_paket = mysqli_fetch_assoc($query_paket);
+                                                                $nama_paket = $get_data_paket['nama_paket'];
+                                                                $kecepatan = $get_data_paket['kecepatan_paket'];
+                                                                $kuota_paket = $get_data_paket['kuota_paket'];
+                                                                $initPaket = $kecepatan . ", " . $kuota_paket . ", ". $nama_paket;
+                                                            ?>
+                                                                <strong><?= $initPaket ?></strong>
+                                                            </h4>
                                                                         <hr>
                                                                         <h4><strong>Pilih Mitra</strong></h4>
                                                                         <div class="inbox-widget nicescroll " tabindex="100" style="overflow: hidden; max-height: 250px; padding: 10px; min-height: 250px; background-color: cornsilk; outline: none;">
