@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telpon_sc = $_POST['telpon_sc'];
     $alamat_sc = $_POST['alamat_sc'];
     $keterangan_sc = $_POST['keterangan_sc'];
+    $odp_sc = $_POST['odp_sc'];
     $mitra_id = $_POST['mitra_id'];
     $teknisi_id = $_POST['teknisi_id'];
     $status_sc = $_POST['status_sc'];
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             '$telpon_sc',
                                             '$alamat_sc',
                                             '$keterangan_sc',
+                                            '$odp_sc',
                                             null,
                                             '$mitra_id',
                                             '$teknisi_id',
