@@ -281,6 +281,7 @@ $sc = mysqli_query($conn, "SELECT * FROM tb_sc WHERE mitra_id = '$get_data_akun[
                                                             <h3 style="color: #850A05 ;" > Kode SC : <strong><?= $dta['kode_sc'] ?></strong></h3>
                                                             <h4> <strong> MYIR : </strong> <?= $dta['myir_sc'] ?></h4>
                                                             <h4> <strong> STO : </strong> <?= $dta['sto_sc'] ?></h4>
+                                                            <h4> <strong> ODP : </strong> <?= $dta['odp_sc'] ?></h4>
                                                             <?php
                                                             if ($dta['status_sc'] == "DONE"){
                                                                 echo "<span class='label label-success'>Selesai</span>";
