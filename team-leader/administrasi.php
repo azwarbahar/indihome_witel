@@ -184,6 +184,10 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE role_admin='TL'");
                             </li>
 
                             <li class="has_sub">
+                                <a href="sales.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Sales </span></a>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="teknisi.php" class="waves-effect"><i class="ti-id-badge"></i> <span> Teknisi </span></a>
                             </li>
 

@@ -252,4 +252,126 @@ if (isset($_GET['kirim_order_teknisi'])) {
 }
 
 
+// SUBMIT SALES
+if (isset($_POST['submit_sales'])) {
+	$random_number = rand(10, 99);
+	$kode_sales = "SPMU" .$random_number. "M";
+	$nama_sales = $_POST['nama_sales'];
+	$telpon_sales = $_POST['telpon_sales'];
+	$email_sales = $_POST['email_sales'];
+	$alamat_sales = $_POST['alamat_sales'];
+	$username_sales = $_POST['username_sales'];
+	$password_sales = password_hash($username_sales, PASSWORD_DEFAULT);
+	$role_sales = "Sales";
+	$status_sales = "Aktif";
+
+	// SET FOTO
+	$foto = $_FILES['foto_sales']['name'];
+	$ext = pathinfo($foto, PATHINFO_EXTENSION);
+	$nama_foto = "image_".time().".".$ext;
+    $file_tmp = $_FILES['foto_sales']['tmp_name'];
+
+    // TAMBAH DATA
+	$query= "INSERT INTO tb_sales VALUES (NULL, '$kode_sales', '$nama_sales', '$telpon_sales', '$email_sales', '$alamat_sales', '$nama_foto', '$status_sales')";
+	mysqli_query($conn, $query);
+	if (mysqli_affected_rows($conn) > 0) {
+		//get Id sales
+		$getIdInster = mysqli_insert_id($conn);
+		// TAMBAH AKUN LOGIN SALES
+		$queryauth = "INSERT INTO tb_auth VALUES (NULL, '$getIdInster', '$username_sales', '$password_sales', '$role_sales', '$status_sales')";
+		mysqli_query($conn, $queryauth);
+		move_uploaded_file($file_tmp, '../assets/images/sales/'.$nama_foto);
+		plugins(); ?>
+		<script>
+
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Data Sales Berhasil ditambah!',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'sales.php';
+				});
+            });
+		</script>
+	<?php }
+}
+
+// UPDATE SALES
+if (isset($_POST['edit_sales'])) {
+	$id_sales = $_POST['id_sales'];
+	$nama_sales = $_POST['nama_sales'];
+	$telpon = $_POST['telpon'];
+	$email_sales = $_POST['email_sales'];
+	$alamat_sales = $_POST['alamat_sales'];
+	$status_sales = $_POST['status_sales'];
+	$username_sales = $_POST['username_sales'];
+
+    // SET FOTO
+	if ($_FILES['foto_sales']['name'] != '') {
+		$foto = $_FILES['foto_sales']['name'];
+		$ext = pathinfo($foto, PATHINFO_EXTENSION);
+		$nama_foto = "image_".time().".".$ext;
+		$file_tmp = $_FILES['foto_sales']['tmp_name'];
+		// HAPUS OLD FOTO
+		$target = "foto/".$_POST['foto_now'];
+		if (file_exists($target) && $_POST['foto_now'] != 'default.png') unlink($target);
+		// UPLOAD NEW FOTO
+		move_uploaded_file($file_tmp, '../assets/images/sales/'.$nama_foto);
+	} else {
+		$nama_foto = $_POST['foto_now'];
+	}
+		$query = "UPDATE tb_sales SET nama_sales = '$nama_sales',
+											telpon = '$telpon',
+											email_sales = '$email_sales',
+											alamat_sales = '$alamat_sales',
+											foto_sales = '$nama_foto',
+											status_sales = '$status_sales' WHERE id_sales = '$id_sales'";
+		mysqli_query($conn, $query);
+	// EDIT PARTAI
+	if (mysqli_affected_rows($conn) > 0) {
+		$query1 = "UPDATE tb_auth SET username_auth = '$username_sales' WHERE id_akun = '$id_sales' AND role_auth ='Sales'";
+		mysqli_query($conn, $query1);
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil',
+					text: 'Data Sales berhasil diubah',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'sales.php';
+				});
+			});
+		</script>
+	<?php }
+}
+
+// HAPUS SALES
+if (isset($_GET['hapus_sales'])) {
+	$id_sales = $_GET['id_sales'];
+
+	$query = "DELETE FROM tb_sales WHERE id_sales = '$id_sales'";
+	mysqli_query($conn, $query);
+	if (mysqli_affected_rows($conn) > 0) {
+		$query2 = "DELETE FROM tb_auth  WHERE id_akun = '$id_sales' AND role_auth ='Sales'";
+		mysqli_query($conn, $query2);
+		plugins(); ?>
+		<script>
+			$(document).ready(function() {
+				swal({
+					title: 'Berhasil Dihapus',
+					text: 'Data Sales berhasil dihapus',
+					icon: 'success'
+				}).then((data) => {
+					location.href = 'sales.php';
+				});
+			});
+		</script>
+	<?php }
+}
+
+
+
+
 ?>

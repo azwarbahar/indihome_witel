@@ -174,6 +174,10 @@ $order = mysqli_query($conn, "SELECT * FROM tb_order ORDER BY id_order DESC");
                             </li>
 
                             <li class="has_sub">
+                                <a href="spv.php" class="waves-effect"><i class="ti-id-badge"></i> <span> SPV </span></a>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="laporan.php" class="waves-effect"><i class="ti-files"></i> <span> Laporan </span></a>
                             </li>
 
